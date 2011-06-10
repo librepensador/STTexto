@@ -1,0 +1,148 @@
+\documentclass[ST]{subfiles}
+
+\begin{document}
+\usetikzlibrary{arrows}
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[scale=2.54]
+% dpic version 2010.11.28 option -g for TikZ and PGF 1.01
+
+%\draw[step=.25cm,lightgray,very thin] (-0.25,-3) grid (4,1);
+\draw [dashed] (0.5,0.75) -- (0.5,-2.75);
+\draw  [dashed] (3.5,0.75) -- (3.5,-2.75);
+\draw [-latex,thick] (0.375,-0.75) -- (3.625,-0.75) node[anchor=west] {$x$} ; % primer eje X
+\draw [-latex,thick] (3.5,-0.875) -- (3.5,-0.125) node[anchor=north west] {$v$};      % primer eje v
+\shadedraw[top color=white,bottom color=gray!70!white, rounded corners=0.1cm,shorten = 0.5pt] (0.5,-0.75)--(0.5,-0.6) -- (2.5,-0.6)--(2.6,-0.75)--cycle;
+\draw[blue] (0.5,-0.25) -- (3.5,-0.25) node[midway,sloped,below,blue] {$v_\infty$} ;% primer V_0
+\node at (0.25,-0.5) {$v_{+1}$};
+
+\draw [-latex,thick] (0.375,-1.75) -- (3.625,-1.75) node[anchor=west] {$x$} ; % segundo eje X
+\draw [-latex,thick] (3.5,-1.875) -- (3.5,-1.125) node[anchor=north west] {$v$} ;% segundo eje v
+\shadedraw[top color=white,bottom color=gray!70!white, rounded corners=0.1cm,shorten =0.5pt] (0.5,-1.75)--(0.5,-1.6) -- (3.5,-1.6)--(3.5,-1.75)--cycle;
+\shadedraw[top color=white,bottom color=gray!70!white, rounded corners=0.1cm,shorten =0.5pt] (3.5,-1.6)--(3.5,-1.475) -- (1.5,-1.475)--(1.4,-1.6)--cycle;
+\draw[blue] (0.5,-1.25) -- (3.5,-1.25)  node[midway,sloped,above,blue] {$v_\infty$}  ;% segundo V_0
+\node at (0.15,-1.5) {$v_{+1}+v_{-1}$};
+
+\draw [-latex,thick] (0.375,-2.75) -- (3.625,-2.75) node[anchor=west] {$x$} ; % tercer eje X
+\draw [-latex,thick] (3.5,-2.875) -- (3.5,-2.125) node[anchor=north west] {$v$} ;% tercer eje v
+\shadedraw[top color=white,bottom color=gray!70!white, rounded corners=0.1cm,shorten =0.5pt] (0.5,-2.75)--(0.5,-2.475) -- (3.5,-2.475)--(3.5,-2.75)--cycle;
+\shadedraw[top color=white,bottom color=gray!70!white, rounded corners=0.1cm,shorten =0.5pt]
+(0.5,-2.475)--(0.5,-2.375) -- (2.5,-2.375)--(2.6,-2.475)--cycle;
+\draw[blue] (0.5,-2.25) -- (3.5,-2.25) node[midway,sloped,above,blue] {$v_\infty$} ;% tercer V_0
+\node at (0.15,-2.5) {$v_1+v_{+2}$};
+
+\ifx\dpiclw\undefined\newdimen\dpiclw\fi
+\global\def\dpicdraw{\draw[line width=\dpiclw]}
+\global\def\dpicstop{;}
+\dpiclw=0.8bp
+\dpiclw=0.8bp
+\dpicdraw (0,0)
+ --(0,0.3125)\dpicstop
+\dpicdraw (-0.0625,0.3125)
+ --(0.0625,0.3125)\dpicstop
+\dpicdraw (-0.125,0.354167)
+ --(0.125,0.354167)\dpicstop
+\dpicdraw (-0.0625,0.395833)
+ --(0.0625,0.395833)\dpicstop
+\dpicdraw (-0.125,0.4375)
+ --(0.125,0.4375)\dpicstop
+\dpicdraw (0,0.4375)
+ --(0,0.75)\dpicstop
+\draw (-0.125,0.375) node[left=-1.5bp]{$ V_g$};
+\dpicdraw (0,0.75)
+ --(0.125,0.75)
+ --(0.145833,0.791667)
+ --(0.1875,0.708333)
+ --(0.229167,0.791667)
+ --(0.270833,0.708333)
+ --(0.3125,0.791667)
+ --(0.354167,0.708333)
+ --(0.375,0.75)
+ --(0.5,0.75)\dpicstop
+\draw (0.25,0.791667) node[above=-1.5bp]{$ R_g$};
+\dpicdraw[fill=black](0.5,0.75) circle (0.007874in)\dpicstop
+\dpicdraw[fill=black](0.5,0) circle (0.007874in)\dpicstop
+\dpicdraw (2.858333,0.75)
+ --(3.5,0.75)\dpicstop
+\dpicdraw (0.5,0.75)
+ --(1.166667,0.75)\dpicstop
+\dpicdraw (1.166667,0.7)
+ --(2.833333,0.7)\dpicstop
+\dpicdraw (2.833333,0.7)
+ ..controls (2.847141,0.7) and (2.858333,0.722385)
+ ..(2.858333,0.75)
+ ..controls (2.858333,0.777615) and (2.847141,0.8)
+ ..(2.833333,0.8)\dpicstop
+\dpicdraw (2.833333,0.8)
+ --(1.166667,0.8)\dpicstop
+\dpicdraw (1.166667,0.8)
+ ..controls (1.152859,0.8) and (1.141667,0.777615)
+ ..(1.141667,0.75)
+ ..controls (1.141667,0.722385) and (1.152859,0.7)
+ ..(1.166667,0.7)
+ ..controls (1.180474,0.7) and (1.191667,0.722385)
+ ..(1.191667,0.75)
+ ..controls (1.191667,0.777615) and (1.180474,0.8)
+ ..(1.166667,0.8)\dpicstop
+\dpicdraw[fill=black](3.5,0.75) circle (0.007874in)\dpicstop
+\dpicdraw[fill=black](3.5,0) circle (0.007874in)\dpicstop
+\dpicdraw (3.5,0.75)
+ --(3.75,0.75)\dpicstop
+\dpicdraw (3.75,0.75)
+ --(3.75,0.5)
+ --(3.791667,0.479167)
+ --(3.708333,0.4375)
+ --(3.791667,0.395833)
+ --(3.708333,0.354167)
+ --(3.791667,0.3125)
+ --(3.708333,0.270833)
+ --(3.75,0.25)
+ --(3.75,0)\dpicstop
+\draw (3.791667,0.375) node[right=-1.5bp]{$ R_l$};
+\dpicdraw (3.75,0)
+ --(3.5,0)\dpicstop
+\dpicdraw[fill=black](3.5,0) circle (0.007874in)\dpicstop
+\dpicdraw (2.858333,0)
+ --(3.5,0)\dpicstop
+\dpicdraw (0.5,0)
+ --(1.166667,0)\dpicstop
+\dpicdraw (1.166667,-0.05)
+ --(2.833333,-0.05)\dpicstop
+\dpicdraw (2.833333,-0.05)
+ ..controls (2.847141,-0.05) and (2.858333,-0.027615)
+ ..(2.858333,0)
+ ..controls (2.858333,0.027615) and (2.847141,0.05)
+ ..(2.833333,0.05)\dpicstop
+\dpicdraw (2.833333,0.05)
+ --(1.166667,0.05)\dpicstop
+\dpicdraw (1.166667,0.05)
+ ..controls (1.152859,0.05) and (1.141667,0.027615)
+ ..(1.141667,0)
+ ..controls (1.141667,-0.027615) and (1.152859,-0.05)
+ ..(1.166667,-0.05)
+ ..controls (1.180474,-0.05) and (1.191667,-0.027615)
+ ..(1.191667,0)
+ ..controls (1.191667,0.027615) and (1.180474,0.05)
+ ..(1.166667,0.05)\dpicstop
+\dpicdraw (0.5,0)
+ --(0.333333,0)\dpicstop
+\dpicdraw (0.333333,0)
+ --(0.208333,-0.125)\dpicstop
+\filldraw[line width=0bp](0.221268,-0.018447)
+ --(0.237529,-0.01371)
+ ..controls (0.227538,0.000674) and (0.219175,0.016123)
+ ..(0.212593,0.032352)
+ ..controls (0.207874,0.014206) and (0.205327,-0.004436)
+ ..(0.205006,-0.023183)
+ --(0.221268,-0.018447)\dpicstop
+\dpicdraw (0.217461,-0.002327)
+ ..controls (0.225975,-0.041593) and (0.244342,-0.078046)
+ ..(0.270833,-0.108253)\dpicstop
+\dpicdraw (0.166667,0)
+ --(0,0)\dpicstop
+\end{tikzpicture}
+\caption{Una resistencia de carga $R_l$ acoplada a una línea de transmisión sin pérdidas conectada a una fuente de $CC$. Los gráficos debajo del circuito muestran la evolución del transitorio: la primera onda incidente $v_{+1}$, la primera reflexión en la carga $v_{-1}$ y la segunda onda incidente $v_{+2}$. Se supone que $Rg>Z_0$ y $R_l>Z_0$.}
+\label{fig:LTxSinPerFueCCCarResTra-ppKtikz}
+\end{figure}
+
+\end{document}

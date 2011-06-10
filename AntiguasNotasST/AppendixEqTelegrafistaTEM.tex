@@ -1,0 +1,207 @@
+\documentclass[ST]{subfiles}
+
+\begin{document}
+
+\chapter[Telegrafista desde Maxwell]{Ecuaciones del telegrafista a partir de las ecuaciones de Maxwell}
+
+\todo[inline]{Hacer una revisión generalizada de este apéndice: revisión de forma y de fondo.}
+
+Supóngase un arreglo de dos conductores paralelos, de corte transversal constante como se muestra en el gráfico (ref gráfico). Si el largo de los conductores es mucho más grande que cualquier dimensión transversal y los conductores son perfectos y rodeados de un medio que tiene una permitividad y permeabilidad similar al vacío, la solución de las ecuaciones de Maxwell para esta situación al considerar una fuente alterna en uno de los extremos del cable es:
+
+\begin{equation}\label{Ec_Max}
+\begin{split}
+	\nabla\cdot\bm E&=\frac{\rho}{\epsilon_0},\\
+	\nabla\times\bm E&=-\frac{\partial\bm B}{\partial t},\\
+	\nabla\cdot\bm B&=0,\\
+	\nabla\times\bm B&=\mu_0\bm J+\mu\frac{\partial\bm D}{\partial t}.\\
+\end{split}
+\end{equation}
+
+Se consideran campos armónicos de la forma:
+\begin{equation}\label{Ec_CamposComplejos}
+\begin{split}
+	\bm E_c(\bm r,t)&=\underline{\bm E}(\bm r)e^{-i \omega t},\\
+	\bm B_c(\bm r,t)&=\underline{\bm B}(\bm r)e^{-i \omega t}.\\
+\end{split}
+\end{equation}
+donde $\underline{\bm E}(\bm r)$ denota el fasor de campo eléctrico y $\bm E_c(\bm r,t)$ el campo eléctrico camplejo. El vínculo con las ecuaciones de Maxwell, se realiza a partir de $\mathbf{E(\bm r,t)}={\Re}(\bm E_c(\bm r,t))$, es decir, el campo eléctrico es la parte real del campo eléctrico complejo. Con estas consideraciones, las ecuaciones de Maxwell se transforman en:
+
+\begin{equation}\label{Ec_MaxFas}
+\begin{split}
+	\nabla\cdot\underline{\bm E}(\bm r)&=\frac{\rho}{\epsilon_0},\\
+	\nabla\times\underline{\bm E}(\bm r)&=i \omega \underline{\bm B}(\bm r),\\
+	\nabla\cdot\underline{\bm B}(\bm r)&=0,\\
+	\nabla\times\underline{\bm B}(\bm r)&=\mu_0\bm J-i \omega \mu\underline{\bm D}(\bm r).\\
+\end{split}
+\end{equation}
+
+
+Con la fuerte suposición de que en el sistema de par de cables se excita sólo el modo TEM (Modo transversoelectromagnético), la potencia fluye en dirección al eje simétrico del sistema (elegido por simplicidad como el eje z) y las componentes del campo en la dirección del eje son nulas (${\underline{\bm E}}_{||}=0={\underline{\bm B}}_{||}$).
+
+	\[\nabla\cdot\underline{\bm E}(\bm r)=\nabla_{\bot}\cdot\underline{\bm E}(\bm r)+\nabla_{||}\cdot\underline{\bm E}(\bm r)=\nabla_{\bot}\cdot({\underline{\bm E}}_{\bot}(\bm r)+{\underline{\bm E}}_{||}(\bm r))+\frac{\partial E_z}{\partial z}=\nabla_{\bot}\cdot{\underline{\bm E}}_{\bot}(\bm r)
+\]
+
+donde
+	\[\nabla_{||}=\mathbf{\hat{z}}\frac{\partial}{\partial z}
+\]
+
+además
+	\[
+\nabla\times\underline{\bm E}(\bm r)=(\nabla_{\bot}+\nabla_{||})\times({\underline{\bm E}}_{z}+{\underline{\bm E}}_{\bot})=\nabla_{\bot}\times{\underline{\bm E}}_{\bot}+\nabla_{||}\times{\underline{\bm E}}_{\bot}=\frac{\partial{\mathbf{\hat{z}}\times\underline{\bm E}}_{\bot}}{\partial z}
+ \]
+
+Las ecuaciones del Maxwell fasoriales (\ref{Ec_MaxFas}), suponiendo que el medio que rodea los cables es similar al vacío, se transforman en:
+
+
+\begin{equation}\label{Ec_MaxFasParCables}
+\begin{split}
+  \nabla_{\bot}\cdot{\underline{\bm E}}_{\bot}(\bm r)&=0,\\
+	\frac{\partial{\mathbf{\hat{z}}\times\underline{\bm E}}_{\bot}}{\partial z}&=i \omega {\underline{\bm B}}_{\bot}(\bm r),\\
+	\nabla\cdot{\underline{\bm B}}_{\bot}(\bm r)&=0,\\
+	\frac{\partial{\mathbf{\hat{z}}\times\underline{\bm B}}_{\bot}}{\partial z}&=-i\omega \mu_0\epsilon_0{\underline{\bm E}}_{\bot}(\bm r).\\
+\end{split}
+\end{equation}
+
+Si la segunda ecuación en (\ref{Ec_MaxFasParCables}) se le aplica el operador
+	\[
+	\mathbf{\hat{z}}\times\frac{\partial}{\partial z}
+\]
+
+y con la ayuda de la cuarta ecuación en (\ref{Ec_MaxFasParCables}), se obtiene
+
+	\[
+	-\frac{\partial^2{\underline{\bm E}}_{\bot}}{\partial z^2}=i\omega\mathbf{\hat{z}}\times\frac{\partial{\underline{\bm B}}_{\bot}}{\partial z}=-\mu_0\epsilon_0\omega^2{\underline{\bm E}}_{\bot}
+\]
+
+Como el sistema es simétrico en $z$, la ecuación se puede escribir como
+
+\begin{equation}\label{ec_OndEParCables}
+	\frac{d^2{\underline{\bm E}}_{\bot}}{d z^2}+\mu_0\epsilon_0\omega^2{\underline{\bm E}}_{\bot}=0
+\end{equation}
+
+la velocidad de la luz en el vacío es $c=\displaystyle\frac{1}{\sqrt{\mu_0\epsilon_0}}$ y el número de onda de una onda plana monocromática de frecuencia $\omega$ es $k=\displaystyle\frac{\omega}{c}$. La ecuación para la componente transversal del campo eléctrico es:
+
+	\[
+	(D^2+k^2){\underline{\bm E}}_{\bot}=0
+\]
+
+con soluciones ${\underline{\bm E}}_{\bot}={\underline{\bm E}}_{+}e^{ikz}+{\underline{\bm E}}_{-}e^{-ikz}$; ${\underline{\bm E}}_c={\underline{\bm E}}_{+}e^{i(kz-\omega t)}+{\underline{\bm E}}_{-}e^{-i(kz+\omega t)}$. La solución ${\underline{\bm E}}_{+}$ corresponde a una onda que se propaga en la dirección $z$ a la velocidad de la luz en el vacío (onda incidente), así como ${\underline{\bm E}}_{-}$ se asociada con la onda reflejada.
+
+Como divergencia y rotacional transversos son nulos ($\nabla_{||}\times{\underline{\bm E}}_{\bot}=\mathbf{0}$ y $=\nabla_{\bot}\cdot\underline{\bm E}(\bm r)=0$), se puede definir un potencial en el plano transverso, paralelo al eje $z$:
+	\[
+	V(\bm r,t)=\int_{+}^{-}\bm E_{\bot}(\bm r,t)\cdot d\bm r
+\]
+
+donde los límites $+$ y $-$, denotan cualquier punto en el plano transverso del conductor derecho y del conductor izquierdo, respectivamente. Si se extiende la consideración fasorial de los campos al potencial, es decir: $V_c(\bm r,t)=V(\bm r)e^{-i \omega t}$ y $V(\bm r,t)={\rm Re}(\mathbf{\phi_c(\bm r,t)})$\footnote{Atención: En circuitos eléctricos, ya sean de baja o alta frecuecia, es común utilizar la convención $V_c(\bm r,t)=V(\bm r)e^{j\omega t}$, donde $j^2=-1$. En cualquiera de los casos los resultados son equivalentes, solo hay que tener cuidado en la interpretación de las partes complejas: para $j^2=-1$ reactancias negativas implican comportamientos capacitivos y reactancias positivas, comportamientos inductivos; para $i^2=-1$, reactancias negativas implican comportamientos INDUCTIVOS y reactancias positivas, comportamientos CAPACITIVOS.}.
+
+El fasor de potencial se puede definir como:
+
+	\[
+	V(\bm r)=\int_{+}^{-}\underline{\bm E}_{\bot}(\bm r)\cdot d\bm r
+\]
+
+que aparece realizando la integral de línea del conductor derecho al conductor izquierdo, sobre la segunda ecuación en (\ref{Ec_MaxFasParCables}), previa postmultiplicación producto cruz con el vector $\mathbf{\hat{z}}$
+
+	\[
+	\int_{+}^{-}\frac{\partial{\mathbf{\hat{z}}\times\underline{\bm E}}_{\bot}}{\partial z}\times\mathbf{\hat{z}}\cdot d\bm r=\frac{d}{dz}\int_{+}^{-}(\underline{\bm E}_{\bot}(\mathbf{\hat{z}}\cdot\mathbf{\hat{z}})-\mathbf{\hat{z}}(\mathbf{\hat{z}}\cdot\underline{\bm E}_{\bot}))\cdot d\bm r=\frac{dV}{dz}
+\]
+
+El miembro izquierdo de la ecuación se transforma así:
+
+	\[
+	\int_{+}^{-}i \omega {\underline{\bm B}}_{\bot}(\bm r)\times\mathbf{\hat{z}}\cdot d\bm r=\int_{+}^{-}i \omega {\underline{\bm B}}_{\bot}(\bm r)\cdot\mathbf{\hat{z}}\times d\bm r=\int_{+}^{-}i \omega {\underline{\bm B}}_{\bot}(\bm r)\cdot\mathbf{\hat{n}} dr
+\]
+
+Se considera que $\mathbf{\hat{z}}\times d\bm r=\mathbf{\hat{z}}\times \mathbf{\hat{t}}dr=\mathbf{\hat{n}} dr$, donde $\mathbf{\hat{t}}$ es el vector tangente a la curva en el plano transversal, que une el conductor derecho con el izquierdo.
+
+El flujo magnético enlazado ($\Phi_B$) en la superficie formada por las aristas de los cilindros y las curvas +- y -+ es:
+
+	\[
+	\Phi_B=\iint{\underline{\bm B}_{\bot}}\cdot\mathbf{\hat{n}} drdz\Rightarrow\Phi_B=\Delta z\int_{+}^{-} {\underline{\bm B}}_{\bot}(\bm r)\cdot\mathbf{\hat{n}} dr=LI
+\]
+
+finalmente, si se considera que $L_l=L/\Delta z$ es la inductancia por unidad de longitud:
+
+	\[
+	\frac{dV}{dz}=\int_{+}^{-}\frac{\partial{\mathbf{\hat{z}}\times\underline{\bm E}}_{\bot}}{\partial z}\times\mathbf{\hat{z}}\cdot d\bm r=\int_{+}^{-}i \omega {\underline{\bm B}}_{\bot}(\bm r)\cdot\mathbf{\hat{n}} dr=i\omega L_lI
+\]
+
+De una forma completamente análoga se obtiene la relación:
+
+	\[
+	\frac{dI}{dz}=i\omega C_l V
+\]%\vspace{0.5cm}
+\begin{figure}[htbp]
+  \begin{center}
+   %\scalebox{0.75}[0.75]{\subfile{SKETCHParCabCyl-Tikz-esk-sub.tex}}
+   %\put(2,3){\resizebox{10cm}{!}{\subfile{SKETCHParCabCyl-Tikz-esk-sub.tex}}}
+   %\resizebox{10cm}{!}{\subfile{SKETCHParCabCyl-Tikz-esk-sub.tex}}
+   \subfile{SKETCHParCabCylTikz-Sub.tex}
+  \end{center}
+
+
+  %\input{SKETCHParCabCyl-Tikz-esk.sk}
+  \caption{Par de cables de corte transversal constante}
+  \label{fig:ParCables}
+\end{figure}
+%
+% \begin{center}
+%   %\resizebox{15cm}{!}{\subfile{SKETCHParCabCyl-Tikz-esk-sub.tex}}
+%   \subfile{SKETCHParCabCyl-Tikz-esk-sub.tex}
+%   \captionof{figure}{caption text}
+%   \label{fig:ParCables}
+% \end{center}
+
+
+
+
+
+
+
+
+¿Cómo se hace?
+
+En la cuarta ecuación de (\ref{Ec_MaxFasParCables}) se premultiplica producto cruz con el vector $\mathbf{\hat{z}}$ y luego se realiza la circulación sobre la curva $C$ que es el corte transversal del conductor derecho:
+
+	\[
+	\mathbf{\hat{z}}\times\frac{\partial{\mathbf{\hat{z}}\times\underline{\bm B}}_{\bot}}{\partial z}=-\frac{\partial\underline{\bm B}_{\bot}}{\partial z}\Rightarrow-\frac{d}{dz}\oint_C \underline{\bm B}_{\bot}\cdot d\bm r=-i\omega\mu_0\epsilon_0 \oint_C \mathbf{\hat{z}}\times\underline{\bm E}_{\bot}\cdot d\bm r
+\]
+
+Si $C$ se elige en la dirección antihoraria, el vector $d\bm r\times\mathbf{\hat{z}}=\mathbf{\hat{n}_c}dr$, donde $\mathbf{\hat{n}_c}$ es el vector unitario normal exterior al conductor derecho. Continuando el desarrollo y teniendo en cuenta la ecuación constitutiva $\bm B=\mu\mathbf{H}$ se sigue que:
+
+	\[
+	\mu_0\frac{d}{dz}\oint_C \underline{\mathbf{H}}_{\bot}\cdot d\bm r=i\omega\mu_0\epsilon_0 \oint_C \underline{\bm E}_{\bot}\cdot d\bm r\times\mathbf{\hat{z}}\Rightarrow\frac{dI}{dz}=i\omega\epsilon_0 \oint_C \underline{\bm E}_{\bot}\cdot \mathbf{\hat{n}_c}dr
+\]
+
+Con la ley de Ampere para la intensidad del campo magnético se sabe que $\oint_C \underline{\mathbf{H}}_{\bot}\cdot d\bm r=I$, la ley de Gauss para el desplazamiento eléctrico $\oiint\limits_{S}{\bm D\cdot d\mathbf{S}}=\Delta z\epsilon_0\oint_C \underline{\bm E}_{\bot}\cdot \mathbf{\hat{n}_c}dr=Q$ y la definición de capacitancia $C=Q/V$ se obtiene:
+
+	\[
+	\frac{dI}{dz}=i\omega\frac{Q}{\Delta z}=i\omega C_l V
+\]
+
+El par de ecuaciones (\ref{ec_V&IParLineas}) engendran dos ecuaciones ondulatorias para el voltaje y la corriente, que se muestran en (\ref{ec_OndV&IParLineas}), se conocen como Ecuaciones del Telegrafista y su versión desde los campos es (\ref{ec_OndEParCables}).
+\begin{equation}\label{ec_V&IParLineas}
+\begin{split}
+	\frac{dV}{dz}&=i\omega L_lI \\
+	\frac{dI}{dz}&=i\omega C_l V\\
+\end{split}
+\end{equation}
+
+\begin{equation}\label{ec_OndV&IParLineas}
+\begin{split}
+	\frac{d^2V}{dz^2}&=-\omega^2 L_lC_l V \\
+	\frac{d^2I}{dz^2}&=-\omega^2 L_lC_l I\\
+\end{split}
+\end{equation}
+
+Si las ondas de voltaje y corriente son análogas a la onda electromagnética que se propaga según (\ref{ec_V&IParLineas}), entonces $L_lC_l=\mu_0\epsilon_0$
+
+Las ecuaciones en (\ref{ec_V&IParLineas}) representan: la primera, una caída diferencial de tensión debida a la existencia de una inductancia; la segunda, una caída en la corriente debido al efecto capacitivo
+
+
+
+
+
+\end{document}
+
+

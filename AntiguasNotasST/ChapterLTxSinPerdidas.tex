@@ -1,0 +1,195 @@
+\documentclass[ST]{subfiles}
+\begin{document}
+\chapter{Línea de transmisión sin pérdidas}\label{cap:LTxSinPer}
+
+
+En el capítulo anterior se presentó la aproximación circuital de parámetros distribuidos de una línea de transmisión constituida por un par de cables. En este capítulo se hará el estudio de un caso particular relevante: la línea de transmisión sin pérdidas. Es decir, la línea donde no se pierde potencia por calentamiento.
+
+Se mostrará que la impedancia característica en este caso es puramente real. Adicionalmente se acoplará la línea a diferentes cargas para analizar su comportamiento: un circuito abierto, un corto circuito, una resistencia y por último una impedancia genérica.
+
+\section{Ecuación genérica: caso no armónico}
+
+En (\ref{eq:TelegrafistaFasorial}) se estudió el comportamiento de una línea en el caso sencillo de una excitación armónica y en ausencia de transitorios. La línea sin pérdidas ofrece la oportunidad de estudiar el fenómeno atendiendo a los transitorios, sin entrar en muchas complicaciones matemáticas. Retomando la ecuación del telegrafista (\ref{eq:TelegrafistaDesacopladas}) cuando la resistencia y la conductancia distribuidas son nulas ($r=0$ y $g=0$), se obtiene
+\begin{equation}\label{eq:TelegrafistaSinPerdidas}
+ \begin{split}
+	\frac{\partial^2 v(x,t)}{\partial x^2} & = lc\frac{\partial^2 v(x,t)}{\partial t^2}, \\
+	\frac{\partial^2 i(x,t)}{\partial x^2} & = lc\frac{\partial^2 i(x,t)}{\partial t^2}.
+\end{split}
+\end{equation}
+Obsérvese que son un par de ecuaciones de onda donde la velocidad de fase es $v_{ph}=\displaystyle(lc)^{-1/2}$. Existen múltiples maneras de encontrar la solución a este tipo de ecuaciones\footnote{Una forma directa consiste en aplicar la transformación siguiente, que tiene la particularidad de que deja invariante a las ecuaciones (\ref{eq:TelegrafistaSinPerdidas}).
+\[\left(\begin{array}{c} \eta \\ \xi \end{array}\right)=
+    \left(\begin{array}{cr} 1 & a \\ 1 & -a \end{array}\right)
+    \left(\begin{array}{c} x \\ t \end{array}\right)
+\]
+
+Si se denota la segunda derivada del potencial con respecto a la posición como $v_{xx}$, ésta en términos de las derivadas con respecto a $\eta$ y $\xi$ es $v_{xx}=v_{\eta \eta}+2v_{\eta\xi}+v_{\xi\xi}$. Lo propio se puede hacer con la segunda derivada del potencial con respecto al tiempo: $v_{tt}=a^2(v_{\eta \eta}-2v_{\eta\xi}+v_{\xi\xi})$. Al elegir $a=1/\sqrt{lc}$ y reemplazar en la ecuación de onda, se obtiene la ecuación simplificada para $\eta$ y $\xi$: $4v_{\eta\xi}=0$.
+
+Su solución es simplemente $v(\eta,\xi)=F(\eta)+G(\xi)$, donde $F$ es una función exclusivamente de $\eta$ y $G$ lo es de $\xi$. En términos de las variables iniciales, la solución es  la típica combinación de una onda incidente $v_+$ y una onda reflejada $v_-$ Ec. (\ref{eq:SoluEcuaOndaPoteNoArmo}).}.
+
+Sin importar el método utilizado, la solución es una combinación lineal de una onda que se propaga en la dirección $x$ (onda incidente) y otra onda que se propaga en la dirección contraria (onda reflejada)
+\begin{equation}\label{eq:SoluEcuaOndaPoteNoArmo}
+ v(x,t)=v_+(x-\frac{t}{\sqrt{lc}})+v_-(x+\frac{t}{\sqrt{lc}}).
+\end{equation}
+
+En la solución para la corriente se usan las ecuaciones (\ref{eq:TelegrafistaAcopladas}), teniendo en cuenta que $v$ e $i$ son funciones de la posición y del tiempo.
+\begin{equation}\label{eq:TelegrafistaAcopladaSinPerdidas}
+\begin{split}
+	-\frac{\partial i(x,t)}{\partial x} & = c\frac{\partial v(x,t)}{\partial t}, \\
+	-\frac{\partial v(x,t)}{\partial x} & = l\frac{\partial i(x,t)}{\partial t}.
+\end{split}
+\end{equation}
+La derivada del voltaje incidente contra la corriente incidente se puede escribir con ayuda de la regla de la cadena y la primera ecuación en (\ref{eq:TelegrafistaAcopladaSinPerdidas}), como aparece en las ecuaciones intermedias de (\ref{eq:DerVolIncCorInc}).
+\begin{equation}\label{eq:DerVolIncCorInc}
+ \frac{\partial v_+}{\partial i_+}=\frac{\partial v_+}{\partial x}\frac{\partial x}{\partial i_+}=-l\frac{\partial i_+}{\partial t}\frac{\partial x}{\partial i_+}=l\displaystyle\frac{\partial x}{\partial t}=\frac{l}{\sqrt{lc}}=\sqrt{\frac{l}{c}}.
+\end{equation}
+Interpretando la derivada de la posición contra el tiempo como la velocidad de propagación y utilizando la regla cíclica\footnote{Como $i_+=f(x,t)$, necesariamente $\displaystyle\frac{\partial x}{\partial i_+}\frac{\partial i_+}{\partial t}=-\frac{\partial x}{\partial t}$.}, se pueden explicar las dos últimas igualdades en (\ref{eq:DerVolIncCorInc}). Adicionalmente, como la inductancia y la capacitancia por unidad de longitud son constantes; la integración parcial de (\ref{eq:DerVolIncCorInc}) entrega una corriente incidente en función del voltaje incidente, la impedancia característica y una constante que consuetudinariamente se considera nula (\ref{eq:CorIncFunXyT}). Esto último debido a que el interés central en este capítulo está en el estudio de líneas sin ningún tipo de excitación previa al ``encendido''.
+\begin{equation}\label{eq:CorIncFunXyT}
+ i_+(x,t)=\frac{v_+(x,t)}{Z_0}+i_0\text{ \ \ donde \ \ }Z_0\equiv\sqrt{\frac{l}{c}}\text{ \ \ e \ \ }i_0\equiv 0.
+\end{equation}
+Con un razonamiento similar se obtiene
+\begin{equation}\label{eq:CorRefFunXyT}
+ i_-(x,t)=-\frac{v_-(x,t)}{Z_0}.
+\end{equation}
+Finalmente, la corriente en cualquier punto en función de los voltajes incidente y reflejado y la impedancia característica es
+\begin{equation}\label{eq:CorFunV+V-}
+ i(x,t)=\frac{1}{Z_0}\left[v_+(x,t)-v_-(x,t)\right].
+\end{equation}
+
+\section[$Z_0$ de una línea sin pérdidas]{Impedancia característica de una línea sin pérdidas}
+
+Si un línea de transmisión sin pérdidas de longitud infinita se excita con una fuente, no habrán ni voltaje ni corriente reflejados, debido a que nunca la onda incidente encuentra la carga que genera la reflexión. Ver figura [\ref{fig:LTxInfSinPerMasCtoEquBajFre}]. En este caso la impedancia que ``ve'' la fuente es la impedancia característica. De (\ref{eq:CorIncFunXyT}) se observa que la impedancia reflejada en la fuente
+\begin{equation}\label{eq:ImpRefFueLinInfSinPer}
+ Z(x,t)\Big|_{x=-\infty}=\frac{v_+(x,t)}{i_+(x,t)}\Big|_{x=-\infty}=Z_0=\sqrt{\frac{l}{c}}.
+\end{equation}
+De hecho, esa impedancia es la misma que se mediría en cualquier punto de la línea.
+\subfile{TablaCM-LTxInfSinPerMasCtoEquBajFre.tex}
+
+\todo[color=green,inline]{Req:transitorio con corriente continua. Solución: ver sección \ref{sec:TranLTxSinPerdidas}. Realizado: 11/12/2010}
+
+\section{Transitorio en una línea de transmisión sin pérdidas}\label{sec:TranLTxSinPerdidas}
+
+Considérese una línea cargada con una resistencia genérica $R_l$, que está excitada con una fuente que suministra una diferencia de potencial constante $V_0$. La fuente se acopla al circuito cuando el interruptor se cierra en $t=0$.
+
+\subfile{GrafFueCCMasIntMasLTxMasRes.tex}
+
+%\missingfigure{Fuente de CC + interruptor +línea de transmisión + resistencia $R_l$}
+
+Cuando el interruptor se cierra, una onda de voltaje se propaga en la línea asi
+\[V_{+1}=V_0 U\left(x-\frac{t}{\sqrt{lc}}\right),\] donde $U$ es la función paso unitario\footnote{$f(s)=\begin{cases}
+    1 &\text{si $s\geq 0$ } \\
+    0 &\text{si $s<0$ }.\end{cases}$
+    }
+y $V_{+1}$ denota la primera onda incidente guiada por la línea. Esta onda alcanza la carga  y genera un voltaje reflejado $V_{-1}$ que se suma a la onda incidente. Haciendo uso de coeficiente de reflexión de tensión, según la ecuación (\ref{eq:Gamma(X)}), se sabe que \todo[color=red]{¿Sí se puede utilizar el coeficiente de reflexión de tensión en este régimen?}
+\[V_{-1}=\Gamma(0)V_{+1}=\frac{R_l-Z_0}{R_l+Z_0}V_{+1},\] esta onda se propaga desde la carga hacia el generador y cuando lo encuentre producirá una onda ``reflejada'' que viajará de nuevo hacia la carga y su magnitud será
+\[V_{+2}=\Gamma(-L)V_{-1}=\frac{R_g-Z_0}{R_g+Z_0}\frac{R_l-Z_0}{R_l+Z_0}V_{+1}.\]
+Para cuando $V_{+2}$ haya ido hasta la carga y se haya reflejado de nuevo en la fuente, se habrá producido otro voltaje incidente
+\[V_{+3}=\frac{R_g-Z_0}{R_g+Z_0}\frac{R_l-Z_0}{R_l+Z_0}\frac{R_g-Z_0}{R_g+Z_0}\frac{R_l-Z_0}{R_l+Z_0}V_{+1}=\Gamma_g^2\Gamma_l^2V_{+1},\]
+donde se ha utilizado la convención de que el coeficiente de reflexión de tensión en la carga es $\Gamma(0)=\Gamma_l$ y $\Gamma(+L)=\Gamma_g$.
+El voltaje reflejado producido por $=V_{+3}$ será
+\[V_{-3}=\Gamma_g^2\Gamma_l^3V_{+1}.\]
+El voltaje en la línea cuando se esté propagando la enésima onda incidente será la suma de los voltajes incidentes y los voltajes reflejados, es decir
+\begin{equation*}
+ \begin{split}
+  V_n=&V_{+1}\left[1+\Gamma_g\Gamma_l+\Gamma_g^2\Gamma_l^2+\cdots+\Gamma_g^{n-1}\Gamma_l^{n-1}\right]+V_{+1}\left[\Gamma_l+\Gamma_g\Gamma_l^2+\cdots+\Gamma_g^{n-1}\Gamma_l^n\right], \\
+  =&V_{+1}\left[1+\Gamma_l+\Gamma_g\Gamma_l+\Gamma_g\Gamma_l^2+\Gamma_g^2\Gamma_l^2+\cdots+\Gamma_g^{n-1}\Gamma_l^{n-1}+\Gamma_g^{n-1}\Gamma_l^n\right], \\
+  =&V_{+1}\left(1+\Gamma_l\right)\left[1+\Gamma_g\Gamma_l+\Gamma_g^2\Gamma_l^2+\cdots+\Gamma_g^{n-1}\Gamma_l^{n-1}\right],\\
+  =&V_{+1}\left(1+\Gamma_l\right)\sum_{i=0}^{n-1}\Gamma_g^i\Gamma_l^i.
+ \end{split}
+\end{equation*}
+Cuando $n\rightarrow\infty$, la suma converge aprovechando que $\left|\Gamma_g\Gamma_l\right|<1$
+\[\lim_{n\rightarrow\infty}\sum_{i=0}^{n-1}\left(\Gamma_g\Gamma_l\right)^i=\frac{1}{1-\Gamma_g\Gamma_l}\text{ \ \ }\Rightarrow\text{ \ \ } V_{\infty}=V_{+1}\left(\frac{1+\Gamma_l}{1-\Gamma_g\Gamma_l}\right),\]
+Finalmente se expresan los coeficientes de reflexión en función de $R_l$, $R_g$ y $Z_0$ y se obtiene
+\[\frac{1+\Gamma_l}{1-\Gamma_g\Gamma_l}=\frac{R_l(Z_0+R_g)}{Z_0(R_g+R_l)}\text{ \ \ y \ \  }V_{1+}=V_0\frac{Z_0}{R_g+Z_0},\]
+\[V_{\infty}=V_0\frac{Z_0}{R_g+Z_0}\frac{R_l(Z_0+R_g)}{Z_0(R_g+R_l)}=V_0\frac{R_l}{R_g+R_l}.\]
+El resultado en cierto sentido es el esperado: el voltaje en la línea no depende de los parámetros de ella ($\partial V/\partial Z_0=0$), en consecuencia el voltaje reflejado en la carga es el mismo que impone la fuente. ¡Un divisor de tensión! En otras palabras: una vez el transitorio ha pasado, el sistema se comporta como una fuente real que alimenta una resistencia; tal como lo haría un circuito de baja frecuencia.\todo{¿Proponer un problema? Calcular $i_{\infty}$ a partir de $i_{+1}$}
+
+\subfile{CMLTxSinPerFueCCCarResTra-ppKtikz-sub.tex}
+
+\section{Línea sin pérdidas: el caso armónico}
+
+En esta sección se simplifica, de nuevo, el comportamiento de la línea. Primero, se considera que no hay disipación de potencia en forma de calor ($r=g=0$). Segundo, se evita el estudio del transitorio suponiendo que el circuito excitado ya alcanzó su estado estacionario. En este contexto, se utilizan como punto de partida los resultados encontrados en las secciones \ref{sec:LTxCargada} y \ref{sec:PotenciaGuiadaLinea}.
+
+\subsection{Onda estacionaria en la línea}
+
+Al excitar el sistema con una fuente de voltaje armónica de una única frecuencia: $v(x,t)=\mathbb{R}\left(V(x)e^{j\omega t}\right)$, en la línea aparece una onda estacionaria fruto de la combinación de ondas incidentes y reflejadas. Es importante examinar cómo es este comportamiento ya que más adelante se buscará eliminarlo ()\todo{referencia a cuando se quiere eliminar la onda reflejada acoplando la carga a la línea.}
+
+La constante de propagación será \[\gamma^2=(r+j\omega l)(g+j\omega c)\big|_{r=0\text{ \ y \ }g=0}=-\omega^2 lc\Rightarrow \gamma=j\omega\sqrt{lc}=j\beta.\]
+
+Se había dicho que el fasor de voltaje en cualquier punto de la línea es (ver ecuación (\ref{eq:V&IFun-q}))
+\[V(q)=V_+(q)+V_-(q)=V_+(q)\left[1+\Gamma(q)\right].\]
+La magnitud del número complejo $V(q)$ da el valor pico del potencial en $q$.
+\[|V(q)|= |V_+(q)| |1+\Gamma(q)|, \]
+Pero $|V_+(q)|$ es independiente de $q$, según eq (\ref{eq:V(q)&I(q)}).
+\[|V_+(q)|=|V_+|=\left|\frac{Z_l+Z_0}{2}I_le^{j\beta q}\right|=\frac{|Z_l+Z_0|}{2}|I_l|.\]
+Luego las variaciones del valor pico del voltaje con $q$, se deben exclusivamente a $|1+\Gamma(q)|.$
+Reemplazando apropiadamente en (\ref{eq:Gamma(X)}), el coeficiente de reflexión de tensión es
+\[\Gamma(q)=\frac{Z_l-Z_0}{Z_l+Z_0}e^{-2j\beta q}\Rightarrow\Gamma(q)=|\Gamma(q)|e^{j(\varphi-2\beta q)},\]
+donde se considera que $\varphi$ es la fase del número complejo $\displaystyle\frac{Z_l-Z_0}{Z_l+Z_0}$.
+Los puntos críticos de  $|1+\Gamma(q)|$ se calculan fácilmente, así
+\begin{equation*}
+ \begin{split}
+     1+\Gamma(q)=& 1+ |\Gamma(q)|\cos\Psi+ j|\Gamma(q)|\text{sen}\Psi,\text{ \ \ donde \ \ }\Psi=\varphi-2\beta q,\\
+     & |1+\Gamma(q)|=\left(1+2|\Gamma(q)|\cos\Psi+|\Gamma(q)|^2\right)^{1/2}.
+ \end{split}
+\end{equation*}
+Se observa claramente que el valor máximo de  $|1+\Gamma(q)|$ se da cuando el coseno es máximo, es decir: $\Psi=2n\pi$, con $n\in\mathbb{Z}$. De forma similar, el valor mínimo se consigue cuando $\Psi=(2n+1)\pi$, con $n\in\mathbb{Z}$.
+
+Si por ejemplo se elije $n=1$, habrá un máximo con la restricción $\Psi_1=2\pi=\varphi-2\beta q_1$ y otro en $n=2$ con $\Psi_2=4\pi=\varphi-2\beta q_2$. La distancia entre estos dos máximos consecutivos es $q_1-q_2$ y se calcula así
+\[\Psi_1-\Psi_2=-2\pi=\varphi-2\beta q_1-\varphi+2\beta q_2=-2\beta(q_1-q_2)\Rightarrow q_1-q_2=\frac{\pi}{\beta}.\]
+Pero $\beta=\omega\sqrt{lc}=\displaystyle\frac{2\pi f}{v_{ph}}$, luego $\displaystyle\frac{\pi}{\beta}=\frac{v_{ph}}{2f}$. Finalmente $q_1-q_2=\displaystyle\frac{\lambda}{2}$.
+
+Con un procedimiento completamente análogo, se obtiene que la distancia entre dos mínimos de voltaje en la línea es, de nuevo, la mitad de la longitud de onda de la señal. Para usar en futuras referencias se define la distancia entre máximos consecutivos como $q_{max}$ y entre mínimos consecutivos, $q_{min}$; de forma que
+\begin{equation}\label{eq:DistMin&Max}
+ q_{max}=q_{min}=\frac{\lambda}{2}.
+\end{equation}
+Conocidas las distancias que existen entre mínimos (o máximos) del fasor de potencial en la línea, solo basta conocer cuánto valen ese mínimo y ese máximo para determinar completamente el comportamiento del voltaje a lo largo de la línea.
+
+Cuando hay un máximo
+\[1+\Gamma(q)\big|_{\Psi=2n\pi}=1+|\Gamma(q)|,\]
+y en un mínimo \[1+\Gamma(q)\big|_{\Psi=(2n+1)\pi}=1-|\Gamma(q)|.\]
+La magnitud máxima del fasor de potencial es
+\begin{equation}\label{ec:MaxFasorPotencialLTxSinPerd}
+ |V(q)|_{max}=|V|_{max}= |V_+| |1+\Gamma(q)||\big|_{\Psi=2n\pi}=|V_+|\left[1+|\Gamma(q)|\right]=|V_+|+|V_-|.
+\end{equation}
+El correspondiente valor mínimo es
+\begin{equation}\label{ec:MinFasorPotencialLTxSinPerd}
+ |V(q)|_{min}=|V|_{min}= |V_+| |1+\Gamma(q)||\big|_{\Psi=(2n+1)\pi}=|V_+|\left[1-|\Gamma(q)|\right]=|V_+|-|V_-|.
+\end{equation}
+Nótese que los valores máximo y mínimo de las ecuaciones (\ref{ec:MaxFasorPotencialLTxSinPerd}) y (\ref{ec:MinFasorPotencialLTxSinPerd}) son independientes de $q$, debido a que la magnitud de los fasores de voltaje incidente y reflejado también lo son.
+
+Con un procedimiento completamente análogo se encuentra que la magnitud del fasor de corriente oscila entre un valor mínimo $|I|_{min}$ y un valor máximo $|I|_{max}$ que cumplen las siguientes características
+\begin{equation}
+ \begin{split}
+  q_{min}&=q_{max}=\frac{\lambda}{2}, \\
+  |I|_{min}=|I_+|-|I_-| & \text{ \ \ y \ \ }|I|_{max}=|I_+|+|I_-|.
+ \end{split}
+\end{equation}
+La diferencia notable que hay con el potencial es que cuando hay un máximo en éste, hay un mínimo en la corriente y viceversa: cuando el potencial cae en un mínimo, la corriente alcanza el valor máximo.\todo{Poner una referencia a un problema donde se pida encontrar la condición de mínima corriente ($\Psi=2n\pi$), la de máxima corriente ($\Psi=(2n+1)\pi$) y la distancia entre mínimos próximos.}
+
+\missingfigure{gráfico con las variaciones genéricas de la magnitud del fasor de potencial y del fasor de corriente, mostrando que oscilan entre un valor mínimo y uno máximo, que la distancia entre mínimos y máximos próximos es $\lambda/2$, que cuando hay un mínimo en la corriente hay un máximo en el voltaje y que la distancia entre mínimos y máximos próximos es $\lambda/4$}
+
+\subsection{Corto circuito como carga}
+
+Inicialmente, considérese que la carga es un corto circuito. Verbigracia, $Z_l=0$.
+Utilizando de nuevo el sistema de coordenadas $q$, centrado en la carga y creciente hacia el generador, la impedancia reflejada en cualquier punto de la línea se calcula reemplazando en la ecuación (\ref{eq:V(q)&I(q)Hip}): $Z_c\rightarrow Z_0$ y $Z_l\rightarrow 0$
+\begin{equation}
+ Z(q)=Z_0\frac{Z_0\tanh(j\beta q)}{Z_0}=jZ_0\tan(\beta q).
+\end{equation}
+Una característica sobresaliente de la ecuación anterior es que la impedancia reflejada siempre es compleja. En otras palabras, una línea de transmisión cargada con un corto se comporta como una inductancia o una capacitancia. Es más, en los puntos en donde la función $\tan(\omega q)$ no está definida, la carga se ``ve'' como un circuito abierto.
+
+\missingfigure{Una LTx con un corto circuito como carga. Debajo de este gráfico la reactancia vs la distancia graficando la tangente}
+
+\subsection{Circuito abierto en la carga}
+
+\subsection{Línea cargada con una resistencia}
+
+\subsection{Impedancia genérica como carga}
+
+
+
+
+
+
+
+\end{document}
+

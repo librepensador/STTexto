@@ -1,0 +1,82 @@
+% Archivo par de cables
+def cab_cyl{
+	%%%%%%%% Cilíndro circular recto genérico
+	def cyl{
+	def n_cyl_segs 40
+	def endopts [fill=lightgray]
+
+	sweep[endopts]{ n_cyl_segs<>, rotate(360/n_cyl_segs, [0,0,1]) }line[fill=orange](1,0,-7)(1,0,7)
+	}
+	############ Escena: dos cables deformados
+		%%%%%%%%%% Cable de la derecha
+		put{translate([2,0,0]) then scale([1.5,0.75,2])}{cyl}
+		%%%%%%%%%% Cable de la izquierda
+		put{translate([-2,0,0]) then scale([1,1.5,2])}{cyl}
+		%%%%%%%%%%%%%%%%%% Superficie de integración
+		input{superficie.sk}
+		put{scale([1,1,2])}{superficie}
+	############
+}
+
+%%%%%%%%%%%% EJES PARA LA VISTA 2D
+def axis2D{
+	def tag_X (5.25,0,0) def tag_Y (0,3,0) def tag_Z (0,0,15)
+	line[draw=red,arrows=<->,line width=1pt](-3.75,0,0)(tag_X) % la forma de pasarle el color correcto de la linea a Tikz
+	line[draw=red,arrows=<->,line width=1pt](0,-2,0)(tag_Y)
+	line[draw=red,line width=1pt](0,0,-15)(tag_Z)
+	special|
+		\coordinate [label=right:$x$] (AxisX) at #1;
+		\coordinate [label=above:$y$] (AxisY) at #2;
+		|
+	(tag_X)(tag_Y)%(tag_Z)
+}
+
+%%%%%%%%%%%% EJES PARA LA VISTA 3D
+def axis3D{
+	def tag_X (6,0,0) def tag_Y (0,4,0) def tag_Z (0,0,15)
+	line[draw=red,arrows=<->,line width=1.5pt](-5,0,0)(tag_X)
+	line[draw=red,arrows=<->,line width=1.5pt](0,-2,0)(tag_Y)
+	line[draw=red,arrows=<->,line width=1.5pt](0,0,-15)(tag_Z)
+	special|
+		\coordinate [label=right:$x$] (AnoX) at #1;
+		\coordinate [label=above:$y$] (AnoY) at #2;
+		\coordinate [label=right:$z$] (AnoZ) at #3;
+		|
+	(tag_X)(tag_Y)(tag_Z)
+}
+
+def labels2D{
+	%%%%%%%%%% vector tangente
+
+	line[arrows=->,line width=1.5pt,draw=blue](1.6,0.75,0)(0.5,0.1,0)
+	%%%%%%%%%% vector normal
+	line[arrows=->,line width=1.5pt,draw=green](1.6,0.75,0)(0.95,1.85,0)
+	special|
+		\coordinate [label=right:\textbf{\huge{-}}] (Minus) at (-5.775,-.15);
+		\coordinate [label=above left:$\bm{\hat{t}}$] (TanUni) at (-3.75,.225);
+
+		\coordinate [label=below right:\textbf{\Large{+}}] (Plus) at (-3.075,.525);
+		\coordinate [label=above right:$\bm{\hat{n}}$] (NorUni) at (-3.75,1.2);
+		|
+	(-1.7,-0.2,0)(1,0.3,0)(1.9,0.7,0)(1,1.6,0)
+
+}
+
+def labels3D{
+	%%%%%%%%%% vector tangente
+	line[arrows=->,linewidth=1.5pt,draw=blue](1.6,0.75,0)(0.5,0.1,5)
+	%%%%%%%%%% vector normal
+	line[arrows=->,linewidth=1.5pt,draw=green](1.6,0.75,0)(0.95,1.85,5)
+}
+
+########################## ESCENA DEL ARCHIVO: DOS PARES DE CABLES, VISTA EN EL PLANO XY  y EN 3D
+
+%def scene2D{	{axis2D}	{cab_cyl}	}
+def scene2D{	{axis2D}	{cab_cyl}	{labels2D}	}
+def scene3D{	{axis3D}	{cab_cyl}	}
+put{translate([-6,0,0]) then scale(0.75)}{scene2D}
+put{rotate(15,[1,1,0]) then translate([6,0,0]) then scale(0.5)}{scene3D}
+
+###########################
+
+global{language tikz}

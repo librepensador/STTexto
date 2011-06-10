@@ -1,0 +1,173 @@
+\documentclass[ST]{subfiles}
+\begin{document}
+\chapter{Sistema de comunicaciones}
+\label{cap:SistemaComunicaciones}
+
+\section{Introducción}
+\label{sec:Introducción}
+
+Los dispositivos empleados en la transferencia de información conforman lo que se denomina un Sistema de Comunicaciones. En su forma más simple, se compone de tres elementos: transmisor, canal de comunicaciones  y receptor.
+
+\begin{figure}[htbp]
+  \centering
+	%\includegraphics[scale=0.5]{TransmisorReceptorGenerico.ps}
+	%\input{DPICSisGenTel}
+	\subfile{KtikzTxCanalRxGenerico}
+	\caption{Sistema genérico de comunicaciones}
+	\label{fig:TransmisorReceptorGenerico}
+\end{figure}
+
+El equipo transmisor transforma la información del emisor, de forma que pueda ser envíada por el canal de comunicaciones. Esta información puede ser análoga o digital. En el caso de sistémas analógicos (de información analógica) en el proceso de adaptación se emplea la señal de información para alterar las propiedades (amplitud, fase o frecuencia) de otra señal de mayor frecuencia, que será la que se transmitirá por el canal. Para el caso de sistemas digitales (de información digital) el proceso es idéntico, sin embargo, la modificación de la señal de alta frecuencia puede resultar en una señal de variación discontinua de alguna de sus propiedades. A este proceso de adaptación de la señal al canal se denomina \textbf{modulación}. Al proceso de recuperación se llama \textbf{demodulación}. El canal de comunicaciones es el medio a través del cual fluye la información. Los canales pueden clasificarse según su modo de operación
+
+\begin{enumerate}
+	\item \textit{SIMPLEX}: comunicación en una dirección usando una frecuencia
+	\item \textit{HALF DUPLEX}: las terminales pueden transmitir o recibir pero no lo hacen de forma simultánea.
+	\item \textit{FULL DUPLEX}: Se permite comunicación bidirecional, con una frecuencia independiente para cada terminal.
+\end{enumerate}
+
+También es posible clasificar los canales según su constitución física, pueden ser cableados o inalámbricos (radio). Entre los canales cableados se tiene todas las líneas de transmisión (UTP, coaxial, fibra óptica, guía de ondas, etc...). El medio inalámbrico se modela dependiendo de la aplicación: móvil o fijo, terrestre o satelital, banda angosta o banda ancha, etc... El medio inalámbrico hace uso del espéctro radioeléctrico para la transmisión de información. Las frecuencias del espectro de radio están clasificadas así:
+\begin{center}
+\begin{tabular}{|c|c|c|}\hline
+\textbf{Rango de frecuencia}&\textbf{Acrónimo}&\textbf{Significado}\\ \hline
+$0-300Hz$&ELF&\textit{Extremely low frecuency} \\ \hline
+$300-3KHz$&&Rango de voz \\ \hline
+$3-30KHz$&VLF& \textit{Very low frecuency}\\ \hline
+$30-300KHz$&LF& \textit{Low frecuency}\\ \hline
+$300KHz-3MHz$&MF& \textit{Medium frecuency}\\ \hline
+$3-30MHz$&HF& \textit{High frecuency}\\ \hline
+$30-300MHz$&VHF& \textit{Very high frecuency}\\ \hline
+$300MHz-3GHz$&UHF& \textit{Ultra high frecuency}\\ \hline
+$3-30GHz$&SHF& \textit{Super high frecuency}\\ \hline
+$30-300GHz$&EHF& \textit{Extra high frecuency}\\ \hline
+\end{tabular}
+\end{center}
+
+El uso del espectro radioeléctrico está coordinado a nivel mundial por la Unión Internacional de Telecomunicaciones - sección radio (ITU-R). A nivel nacional usualmente son los ministerios. Existe un consenso mundial del uso que se dará a qué proporción del espectro. Corresponde a los organismos nacionales reglamentar el uso de esas frecuencias. Usualmente es necesario pagar por el uso del espectro. En Colombia. el Ministerio de Comunicaciones es el encargado de regular el uso del espectro y definir el monto de la contrapestación.
+
+\section{Sistema de unidades logarítmicas}
+\label{sec:SistemaDeUnidadesLogarítmicas}
+
+Como ya se comentó de forma introductoria, un sistema de comunicaciones tiene varios elementos como antenas, amplificadores, cables, etc. Cada componente afecta a la señal introduciendo pérdidas o ganancias, que se pueden describir como la relación de la potencia de salida (\textit{Output power}) y la potencia de entrada (\textit{Input power}). Por ejemplo, en un sistema de cuatro etapas, la relación entre las potencia de salida y de entrada es
+
+	\[\frac{P_o}{P_i}=\frac{P_{o,1}}{P_{i,1}}\frac{P_{o,2}}{P_{i,2}}\frac{P_{o,3}}{P_{i,3}}\frac{P_{o,4}}{P_{i,4}}\]
+
+Para simplificar los cálculos y considerando que estas relaciones son entre valores muy grandes o valores muy pequeños, es costumbre utilizar logaritmos, así las multiplicaciones se convierten en sumas. Si el logaritmo empleado está en base $10$, se dice que el resultado está expresado en Bel, tal como aparece en la ecuación (\ref{eq:DefBEL})
+
+\begin{equation}
+	N= \log_{10} \left(\frac{P_{out}}{P_{in}}\right).
+	\label{eq:DefBEL}
+\end{equation}
+
+Es más común usar un submúltiplo del Bel, denominado deciBel y que se obserba en la ecuación (\ref{eq:DefDeciBel})
+
+\begin{equation}
+	N_{dB}= 10\log_{10} \left(\frac{P_{out}}{P_{in}}\right).
+	\label{eq:DefDeciBel}
+\end{equation}
+
+El sistema logarítmico es muy útil porque permite manejar los números con mayor facilidad. Por ejemplo, es más fácil decir que una señal aumentó $50$ $dB$ a decir que es $100000$ veces mayor. Cuando se habla del valor en $dB$ de una señal. En realidad se está haciendo una comparación logarítmica entre una señal de entrada y otra de salida, donde la señal de entrada se considera la referencia. En algunos casos se usa una señal de referencia estándar en vez de la señal de entrada. El nivél más usado es $1 mW$ y su abreviatura es $dBm$. Los $dBm$ representan potencia mientras que los $dB$ es una relación de entrada y salida. Una señal de $3dBm$ está $3dB$ por encima de una señal de $1mW$. Un nivel de $-3dBm$ está $3db$ por debajo de esa referencia. El valor de $0dBm$ indica que la potencia de salida es igual a la referencia de $1mW$.
+
+Otras unidades de referencia comunes son:
+\begin{itemize}
+\item $dBK$, definida a partir de $10\log_{10}(T/1K)$, donde $K$ es el \textit{Kelvin}, la unidad de la temperatura absoluta. Se usa para caracterizar la temperatura de ruido de un equipo de amplificación.
+\item $dBHz$, definida a través de $10\log_{10}(f/1Hz)$. Se usa para indicar anchos de banda (BW).
+\item $dBr$, $dB$ relativo a un valor de referencia. Ejemplo, si la referencia es $10dBm$ y se tiene una señal de $8.7dBm$; se puede afirmar que esta señal tiene una potencia $-1.3dBr$.
+\item $dBc$, $dB$ \textit{carrier}, relativo al valor de referencia de una portadora. Se utiliza en especificaciones de HPA. Refencia a una gráfica
+\end{itemize}
+
+\missingfigure{Espacio para la gráfica de los dBc vistos en un analizador de espectros}
+
+
+No se debe sumar dos potencias expresadas en $dB$ directamente. Por ejemplo, si $P_1=11.5dBW$ y $P_2=11.5dBW$, la suma $P_T=P_1+P_2$ es $P_1=10^{11.5/10}W\cong14.1254W$. Luego $P_T\cong28.2508W$, es decir $P_T\cong14.5103 dBW$.
+
+\section{Otra introducción}
+
+Un sistema de comunicaciones tiene como función transportar información de forma confiable, desde el transmisor hasta el receptor, a través de un canal. El sistema de comunicaciones más básico lo constituye tres bloques: un transmisor, un canal y un receptor; tal como se muestra en la figura (1)\todo{poner referencia a la figura}. Si bien existen diferencias entre los sistemas de comunicación analógico y digital, las funciones de cada bloque se pueden generalizar así:
+\begin{itemize}
+ \item \textbf{Transmisor} Produce una señal de radio que se adapta; en frecuencia, ancho de banda y potencia, a las características del canal.
+ \item \textbf{Receptor} Recibe la señal de radio y extrae la señal original con la información.
+ \item \textbf{Canal} Sirve como medio de transmisión para la señal de radio.
+\end{itemize}
+\missingfigure{Figura 1: Modelo simple de un sistema de comunicaciones. Se detallan un poco más los componentes de un transmisor analógico y otro digital.}
+
+\subsection{Analógico vs digital}
+
+Tal y como sucede en otros campos, los sistemas de comunicaciones también se dividen en análogos y digitales. En particular los sistemas pueden ser de cuatro tipos:
+\begin{itemize}
+ \item Señales de información y a transmitir, analógicas. Ejemplos: sistema de telefonía tradicional, radio AM/FM.
+ \item Señal de información analógica y a trasmitir digital. Ejemplo: telefonía IP en una red local (señal de voz analógica, digitalizada y enviada usando códigos de línea sobre cableado UTP).
+ \item Señal de información digital y a transmitir digital. Ejemplos: Una red local (LAN), información circulando por un \emph{motherboard} operando a $1$Ghz.
+ \item Señal de información digital y transmisión analógica. Casos ilustrativos son: un sistema ADSL, enlaces de microondas terrestres SDH, una red de fibra óptica.
+\end{itemize}
+La estructura interna de una pareja transmisor/receptor cambia de acuerdo a si el sistema es analógico o digital. El principio de funcionamiento es el mismo: la señal se amplifica, se convierte en frecuencia\todo{qué significa ``se convierte en frecuencia''}, se modula, se vuelve a amplificar y se envía al transductor que la acopla al medio de transmisión.
+
+En el caso de los sistemas digitales, el código de fuente\todo{qué es eso} se encarga de mapear la señal de entrada a una señal digital y tiene como función reducir redundancias\todo{qué es una redundancia} en la señal a transmitir. Por ejemplo, el muestreo y cuantización de una señal de voz usando la ley de cuantización $\mu$\todo{referencia a esa ley}, busca mapear niveles de voltaje de la señal analógica de audio a un conjunto de bits. La codificación de canal\todo{qué es eso} persigue un fin diferente: su principal misión es asegurar la transmisión confiable de la información en presencia de un canal con ruido\todo{referencias y/o definiciones}. Se diseña con el fin de minimizar la probabilidad de entregar bits errados a la salida del sistema de recepción. Códigos como \emph{Reed-Solomon}\todo{referencia} (usado para la protección de señales de audio en un CD y para transmisión de TV digital via satélite) o LDPC\todo{qué es y una referencia} son ejemplos de códigos de canal eficientes en su propósito de reducir la probabilidad de recepción de errores en el receptor. En la figura (2)\todo{poner referencia a la figura} se ilustra la diferencia en potencia requerida para una tasa de error dada (BER, Bit Error Rate)\todo{qué es y una referencia} en un caso codificado y uno sin codificar. Dado que la relación BER vs Potencia recibida es una curva característica de los receptores digitales.\todo[inline]{en la figura se hace referencia a unas gráficas de constelación, dónde están, se necesita una referencia, una definición. Adicionalmente se habla de un mapa de fase ?????????????... y una modulación QPSK ?????????????????}
+
+\missingfigure{Figura 2: Sistema de comunicaciones digital inalámbrico. El sistema se afecta por las variaciones del canal aumentando el ruido en el receptor. Las gráficas de constelación muestran el impacto del ruido sobre el mapa de fase de una modulación QPSK}
+
+El sistema de comunicaciones ilustrado en la figura (1)\todo{poner la referencia correcta}, muestra únicamente un trayecto: desde el transmisor hacia el receptor. Es claro que cuando el receptor necesita responder al mensaje enviado, los roles se invierten. Se dice que un sistema opera en un modo \emph{simplex} si solamente es posible enviar señales desde un extremo del sistema al otro, en una dirección a la vez. Un ejemplo es un sistema de radio VHF en el cual es necesario pulsar un botón para hablar con el interlocutor. De otro lado, un teléfono es un sistema \emph{duplex}, dado que es posible que ambos extremos intercambien información simultáneamente. Desde el punto de vista práctico un sistema \emph{duplex} requiere de dos caminos de transmisión (dos frecuencias diferentes, dos cables).
+
+\subsection{Medios de transmisión}
+
+Las características de modulación y codificación dependen de las características del medio de transmisión tales como el ancho de banda disponible\todo{definición y/o referencia}, las frecuencias máxima y mínima utilizables, la potencia máxima permitida, el nivel de interferencia presente, los límites de linearidad de la respuesta del canal\todo{dónde se definen esas características del medio y poner una referencia}, etc.
+
+Entre los medios de comunicación más comunes están:
+
+\todo[inline]{No es mejor hablar de canales alambrados e inalábricos. Poner como ejemplos de los primeros el canal telefónico, el cable coaxial, la fibra óptica; y de los segundos el canal satelital punto a punto, el móvil.}
+
+\begin{itemize}
+ \item El canal telefónico, diseñado originalmente para transmisión de señales de voz en su banda base ($0\sim3.4$Khz), incluye una gran variedad de medios de transmisión y  sistemas de conmutación.
+ \item El cable coaxial: es un arreglo de dos conductores cilíndricos concéntricos, separados por un material dieléctrico. Este arreglo lo hace robusto ante la interferencia externa. Sin embargo, no es la mejor opción para transmisión a larga distancia.
+ \item La fibra óptica: conformada por dos materiales dieléctricos de diferente índice de refracción, recubiertos por un material oscuro protector. Los dieléctricos se diseñan de forma que se garantice reflexión total interna en el cilindro interior (núcleo). Proveen muy baja atenuación y elevado ancho de banda, por lo que son la alternativa ideal para redes de transmisión troncales\todo{definición de una red troncal y referencia} terrestres y submarinas.
+ \item Canal inalámbrico: Se emiten ondas electromagnéticas que se propagan entre el transmisor y el receptor sin utilizar una guía. Al igual que los medios guiados, idealmente de garantizarse transmisión libre de distorsión (magnitud de la respuesta en frecuencia constante y variación lineal de la respuesta de fase [FON08]\todo{ese FON es alguna norma ITU o algo similar. Es necesaria una referencia. Definición de libre de distorsión}).
+\end{itemize}
+
+Los canales inalámbricos se clasifican dependiendo del entorno y dependiendo de la aplicación. Por ejemplo: canal satelital, canal satelital móvil, canal satelital punto a punto, etc. Estos canales son altamente variables debido a cambios atmosféricos y obstáculos en interferencias. En la figura (2)\todo{hacer la referencia correcta}, en el lado del receptor, mediante la gráfica de la constelación de una modulación multifase (cuatro fases)\todo{hay que explicar o dar referencias o definiciones} se muestra la variabilidad de las características del canal. Los puntos claros muestran las variaciones en el símbolo recibido, debidas a ruido en el canal. En este caso las variaciones afectan la fase de los símbolos recibidos. Dado que la modulación usa la fase para transportar información, esos cambios resultarán en errores a la salida del receptor\todo{revisar consistencia entre lo que se dice y lo que aparece graficado}.
+
+La figura (3)\todo{poner la referencia correcta} ilustra las diferencias en el comportamiento de amplitud de varios tipos de canales guiados y no guiados. En este caso nos enfocamos en mostrar principalmente la atenuación -en unidades logarítmicas (dB)- experimentada por una señal enviada por varios medios de transmisión, respecto de la distancia recorrida. La selección de un medio respecto a otro no se debe realizar únicamente con base en su atenuación por unidad de longitud. Si bien es un componente importante, también es necesario considerar la respuesta de fase del canal y su impacto en la distorsión de la señal transmitida, el impacto de la interferencia, las características de la señal a transmitir y, claro está, el costo asociado a la instalación y operación del canal.
+
+\missingfigure{Figura 3 Atenuación versus distancia para varios tipos de medios de transmisión. Se usa una señal de referencia de 1.2Ghz. Las atenuaciones por unidad de longitud en cada medio son: coaxial $13 dB/100 mt$, fibra óptica G625 $0.2 dB/Km $. Para los modelos de tierra plana y Okumura-Hata se usó una altura de móvil de 1.6 metros y una altura de radiobase de 30 metros.}
+
+En este libro nos dedicaremos al análisis de varios medios de transmisión, sin profundizar\todo{qué se evitará} pero sin olvidar los bloques funcionales transmisor/receptor.
+
+\subsection{Espectro radioeléctrico}
+
+Las comunicaciones realizadas de forma inalámbrica (radiocomunicaciones), se soportan en el uso de frecuencias del espectro electromagnético, que es una herramienta conceptual utilizada para analizar el comportamiento de las ondas electromagnéticas, desde la muy baja frecuancia hasta el rango visible. Dentro del espectro electromagnético se encuentra el espectro radioeléctrico, que parte de frecuencias en el rango audible hasta $3000$GHz. El espectro de radio se subdivide a su vez en nueve bandas [RR2008]\todo{es una norma???... referencia}.
+
+\missingfigure{Tabla 1: Espectro radioeléctrico con bandas, símbolos, límites y denominación}
+
+Según la banda se recomienda usar múltiplos de un \emph{Hertz} para cada frecuencia, de forma que se simplifique su descripción: Kilohertz (KHz), frecuencias hasta 3000KHz; Megahertz (MHz), desde 3MHz hasta 3000 MHz y Gigahertz (GHz), desde 3GHz hasta 3000GHz.
+
+\subsection{Servicios, atribuciones, adjudicaciones y asignaciones}
+
+Las comunicaciones radioeléctricas se pueden clasificar según el tipo de comunicaciones a establecer así:
+
+\begin{itemize}
+ \item Servicio fijo: entre dos estaciones cuya posición permanece fija de forma permanente.
+ \item Servicio móvil: entre una estación y otra (o varias) en movimiento.
+ \item Servicio de radiodifusión: entre una estación fija y múltiples estaciones fijas simultaneamente\todo{cuando uno escucha la radio en su carro???... no es este un servicio de este tipo}
+\end{itemize}
+
+Estos servicios pueden prestarse mediante estaciones terrestres o espaciales, dando origen al servicio fijo terrestre o satelital, servicio móvil terrestre o satelital, etc.
+
+En adición a estos servicios, existen otros igual de importantes que no necesariamente comunican dos puntos. Ejemplos: los servicios de radionavegación y radioastronomía. El Reglamento de Radio publicado por la Unión Internacional de Telecomunicaciones\todo{falta referencia}, contiene la tabla mundial de atribuciones de frecuencias. En él se encuentran varios límites aplicables a transmisiones terrestres y espaciales, establecidos para mantener la interferencia en un nivel tolerable.
+
+\subsection{Gestión del espectro}
+
+Hoy en día hay gran variedad de aplicaciones y servicios inalámbricos: radiodifusión, televisión terrestre, televisión satelital, telefonía móvil, sistemas troncalizados, enlaces fijos de microondas, servicio de radioaficionado, etc... Cada una de estas aplicaciones utiliza una porción del espectro radioeléctrico. De no realizarse una adecuada asignación de frecuencias, las interferencias de un servicio sobre otro o de una red sobra otra, dentro de un mismo servicio; aumentarían de forma descontrolada. ¿Por qué? Considérese que en una conversación de voz entre dos personas aumenta el ruido en la zona de la persona que habla. Usualmente la persona que escucha pedirá que le hablen más duro. En esencia le está pidiendo al transmisor que aumente la potencia. Si el ruido viene de otro par de personas que están comunicándose, éstos harán algo similar hasta el punto de que físicamente no pueden gritarse más. Seguramente habrán mejores formas de controlar la interferencia causada, pero a menos de que las cuatro personas se conozcan y acuerden moverse un poco más lejos para no molestar la conversación del vecino, la comunicación sería en extremo difícil de realizar. Imagínese un escenario con miles de parejas transmisor-receptor, o desde el punto de vista de redes, varios operadores compartiendo una misma zona de covertura. Es obvio que se necesita un ente de control que sirva de actor imparcial para garantizar igualdad de condiciones para todos los operadores.
+
+Adicionalmente, este escenario se repite de país en país, y visto que las ondas electromagnéticas no pueden limitarse a las fronteras de una región, es necesario involucrar a los países vecinos en este proceso de regulación y control. La Union Internacional de Telecomunicaciones (ITU, \textit{International Telecommunications Union}) tiene la competencia de armonizar el uso del espectro radioeléctrico a nivel internacional, asignando bandas de frecuencia para cada uno de los servicios. La distribución del espectro se hace con base en regiones, siendo las américas parte de la región 2. Periódicamente, la ITU realiza conferencias mundiales de radiocomunicaciones (WARC, \textit{World Administrative Radio Conference}) en las cuales se estudian y proponen cambios a las atribuciones de frecuencia para cada tipo de servicio. Internacionalmente la ITU discute la atribución de un rango de frecuencias para uno o más servicios determinados. Cuando hay varios servicios compartiendo una atribución, uno de ellos debe ser el principal y otro el secundario\todo{qué significa ser principal y secundario}. Estaciones que usen el servicio principal usualmente tienen protección contra interferencias causadas por los servicios secundarios. Al realizar una atribución de un rango de frecuencias a un servicio, se realizan adjudicaciones dentro de la banda (canalizaciones). Las adjudicaciones competen a uno o más países, mientras las atribuciones se realizan a nivel regional o a nivel global. Cada país es libre de adoptar o no las atribuciones acordadas en el marco de las conferencias de radio. Sin embargo, de no hacerlo, corre el riesgo de no encontrar equipos compatibles y de causar o sufrir interferencias elevadas por parte de redes vecinas.
+
+Una vez transpuestas las atribuciones al plan nacional de frecuencias o, como se llama en Colombia, Cuadro Nacional de Atribución de Bandas de Frecuencias, cada ente nacional responsable por la regulación del espectro (Ministerio de Comunicaciones en Colombia) se encarga de asignar frecuencias específicas (o canales) dentro de cada banda.
+
+La figura (4)\todo{corregir la referencia} se muestra la transposición colombiana en el rango 14.15.35Ghz y las atribuciones internacionales según la ITU. En el caso mostrado no hay diferencias, sin embargo, esto no significa que en el caso colombiano no haya pequeñas diferencias con las atribuciones mundiales en algunos servicios específicos.
+
+\missingfigure{Figura 4: Ejemplo de transposición de las atribuciones globales en comparación con Colombia. Rango 14-15.35GHz. Servicios de microondas. La distribución colombiana es un extracto del Cuadro Nacional de Atribución de Bandas de Frecuencia.}
+
+Es importante tener en cuenta que el espectro radioeléctrico es un recurso único y no renovable.
+
+
+
+
+\end{document}
+

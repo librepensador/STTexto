@@ -1,0 +1,42 @@
+\documentclass[ST]{subfiles}
+
+\begin{document}
+
+\usetikzlibrary{positioning}
+\usepgflibrary{shapes.arrows}
+
+\begin{tikzpicture}[
+node distance=2mm,
+basic/.style={
+% The shape:
+rectangle,
+% The size:
+minimum size=15mm,
+% The border:
+very thick,
+draw=red!50!black!50, % 50% red and 50% black,
+% and that mixed with 50% white
+% The filling:
+top color=white, % a shading that is white at the top...
+bottom color=red!50!black!20, % and something else at the bottom
+% Font
+font=\itshape
+},
+way/.style={
+% The shape:
+rectangle,minimum size=35mm,rounded corners=3mm,
+% The rest
+very thick,draw=black!50,
+top color=white,bottom color=black!20,
+font=\ttfamily}]
+\node (Tx) [basic] {Transmisor};
+\node (FArrow) [single arrow,minimum height=1cm, draw=none,fill=blue!50,right=of Tx] {};
+\node (Channel) [way,right=of FArrow] {};
+\node [below= of Channel.north] {Canal};
+\draw[scale=0.25,color=blue,smooth,xshift=17cm] plot (\x,{3*sin(4*\x r)+2*sin(2*\x r)+2*sin(10*\x r)}) {};
+\node (SArrow) [single arrow,minimum height=1cm, draw=none,fill=blue!50,right=of Channel] {};
+\node (Rx) [basic,right=of SArrow] {Receptor};
+\end{tikzpicture}
+
+\end{document}
+

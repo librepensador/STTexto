@@ -1,0 +1,66 @@
+\documentclass[ST]{subfiles}
+\begin{document}
+ \chapter{Cambios realizados y pendientes}
+
+ Convenciónes:
+ \begin{itemize}
+  \item  si la \emph{todo} está en verde, debe aparecer la fecha de cuando fue realizada y una explicación más detallada de qué fue lo que se hizo.\\
+  \item si la \emph{todo} está en naranja, es que falta por hacer.
+  \item si la \emph{todo} está en rojo, es porque el asunto es crítico.
+ \end{itemize}
+
+\section{Cambios realizados}
+
+Acá tengo una lista de los cambios que había hecho en el texto desde que comencé a utilizar Todonotes. Cuando hacía un cambio pasaba la ``todo'' a este sitio y la reescribía con mayor información y referencia a dónde se hizo el cambio.
+
+
+\todo[color=green,inline]{Cambios realizados en \ref{sec:PotenciaGuiadaLinea}:$p$ se reemplaza por $P_i$ (potencia instantánea); $P$ se reemplaza por $P_c$ (potencia compleja); $P$ a secas es la parte real de la potencia compleja que es el promedio en el tiempo de la potencia compleja instantánea. Cambio realizado en 08/12/2010.}
+\todo[color=green,inline]{No hablo de la resistencia diferencial cerca de (\ref{eq:DerVolIncCorInc}). 09/12/2010.}
+\todo[color=green,inline]{Párrafo despues de (\ref{eq:DerVolIncCorInc}) mejorado. Se agrega nota al pie con la propiedad cíclica de las derivadas parciales. 09/12/2010}
+\todo[color=green,inline]{Finalmente puse en \ref{eq:CorIncFunXyT} una constante de integración que se anula porque la línea no está excitada previamente al encendido de la fuente. 09/12/2010}
+
+
+Ahora (10/12/2010) esta sección no es necesaria ya que las ``todo'' se pueden dejar en el texto sin problema. Cuando se arregle algo se le cambia el color a verde y queda en el sitio donde se necesita la referencia de lo que se hizo. Cuando se vaya a imprimir se deshabilitan las ``todo'' en el preámbulo (en ST.tex) y listo.
+
+Además ``listoftodos'' hace mejor el trabajo que pretendía hacer con esta sección.
+
+
+\section{Cambios pendientes}
+
+Esta sección hace referencia a cosas estructurales que hay que hacer y no se han hecho. No es una ``todo'' debido a que afectan la globalidad del documento.
+
+\todo[inline]{Req 06/12/2010 Cómo se hace un glosario de términos y hacerlo}
+\todo[inline]{Req 06/12/2010 Hacer un archivo para Bibtex y comenzar a colocar referencias}
+\todo[inline]{Req 07/12/2010 Cómo se hace un Index y hacerlo}
+\todo[inline]{Req 09/12/2010 Cómo se automatizan los problemas propuestos}
+\todo[inline]{Req 09/12/2010 Diseñar un método para realizar respaldos efectivos automáticos}
+\todo[inline]{Req 14/12/2010 Instalar el corrector ortográfico de Latex en Kile}
+
+Cuando el requerimiento haya sido atendido, se cambia el color de la ``todo'' a verde y se escribe en detalle cómo fue la solución.
+
+\section{En el capítulo \ref{cap:SistemaComunicaciones}}
+
+Está muy pobre todo el capítulo. La propuesto es irlo enriqueciendo a medida que se construye todo el texto, de forma que este primer capítulo sea una real introducción a lo que se tratará con más detalle más adelante.
+
+Aun no sé si utilizar como esqueletos el desarrollo histórico y las aplicaciones actuales, o una combinación bien ajustada de los dos.
+
+Este capítulo debería ser confeccionado por LDE y ajustado en los detalles de forma por CEP.
+
+\section{En el capítulo \ref{cap:ModeloCircuitalParametrosDistribuidos}}
+
+Aun no sé dónde incorporar el desarrollo general de la propagación de la potencia en una línea de transmisión genérica. La cuestión es que la propagación guiada se puede estudiar en tres escenarios: TEM, cuasi-TEM y no-TEM. Creo tener claro que los detalles deben ir en los apéndices. Sin embargo está por construir.
+
+\section{En el capítulo \ref{cap:LTxSinPer}}
+
+
+
+\section{Ensayos}
+
+$\uppi$ un teta gorro com bm-hat $\bm \hat{\theta}$ vs otro teta gorro bm-hat-up $\bm \hat{\uptheta}$ vs hat-bm $\hat{\bm \theta}$ vs hat-bm-up $\hat{\bm \uptheta}$ vs otro mathbf-hat $\mathbf{\hat{\theta}}$ vs mathbf-hat-up $\mathbf{\hat{\uptheta}}$
+\[
+	\upmu_0\frac{d}{dz}\oint_C \bm{\underline{H}_{\bot}}\cdot d\bm r=i\upomega\upmu_0\upepsilon_0 \oint_C \bm{\underline{E}_{\bot}}\!\!\cdot d\bm r\times\mathbf{\hat{z}}\Rightarrow\frac{dI}{dz}=i\omega\epsilon_0 \oint_C \bm{\underline{E}_{\bot}}\cdot \mathbf{\hat{n}}_c dr
+\]
+
+\listoftodos
+\end{document}
+

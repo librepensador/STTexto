@@ -1,0 +1,73 @@
+En este directorio se guarda un respaldo del texto Sistemas de Transmisión.
+
+El documento central es ST.tex que define el tipo de documento=book. Carga los paquetes en el preámbulo, necesarios para todos los subarchivos que se van a procesar. Llama a otros documentos a través de \subfile: 
+-----------------------------
+\subfile{ChapterSistemasComunicacion}, un capítulo que está en ChapterSistemasComunicacion.tex y que tiene:
+
+Figura \subfile{KtikzTxCanalRxGenerico}. El nombre indica que el código se programó directamente para Tikz utilizando Ktikz.
+---------------------------
+\subfile{ChapterEcuacionesTelegrafista}, un capítulo que está en ChapterEcuacionesTelegrafista.tex y que tiene:
+
+Figura en \subfile{CMCircGeneBajaFrec.tex}. Gráfico procesado con Circuit Macros desde el codigo fuente CMCircGeneBajaFrec.m4
+
+Figura en \subfile{CMCeldaUnitaria.tex}. Gráfico procesado con Circuit Macros desde el codigo fuente CMCeldaUnitaria.m4
+
+Figura en \subfile{CMModeloCircuitalLTx.tex}. Gráfico procesado con Circuit Macros desde el código fuente CMModeloCircuitalLTx.m4
+
+Figura en \subfile{CMLTxCargada-Sub.tex}. Gráfico procesado con Circuit Macros desde el código fuente CMLTxCargada.m4
+---------------------------
+\subfile{AppendixEqTelegrafistaTEM}, uno de los apéndices que está en AppendixEqTelegrafistaTEM.tex y que tiene:
+
+Figura \subfile{SKETCHParCabCylTikz-Sub}. Gráfico procesado con Sketch desde el código fuente SKETCHParCabCylTikz.sk
+A su vez, el anterior archivo llama a superficie.sk
+---------------------------
+
+\subfile{ChapterLTxSinPerdidas}, un capítulo que está en ChapterLTxSinPerdidas.tex 
+
+-----------------------------
+
+Cuando se trabaja con Ktikz usualmente se carga el template TemplateSubfilesKtikz.pgs
+
+El procesamiento con Sketch se realiza así: "sketch source.sk > out.tex". Siempre pongo al final de los sk la línea "global{language tikz}" para que entregue el código para Tikz. Es necesario que esté el ejecutable "sketch".
+
+El procesamiento con Circuit Macros se realiza así: "m4 source.m4 | ./dpic -g > out.tex". Siempre pongo las dos líneas de encabezado
+include(/home/librepensador/opt/circuit_macros/pgf.m4)
+include(/home/librepensador/opt/circuit_macros/libcct.m4)
+El proceso genera un archivo intermedio .pic que se procesa con el ejecutable "dpic" y éste arroja el código de latex escrito para Tikz.
+
+Listado de los archivos
+
+AppendixEqTelegrafistaTEM.tex
+ChapterEcuacionesTelegrafista.tex
+ChapterLTxSinPerdidas.tex
+ChapterSistemasComunicacion.tex
+CMCeldaUnitaria.m4
+CMCeldaUnitaria.tex
+CMCircGeneBajaFrec.m4
+CMCircGeneBajaFrec.tex
+CMLTxCargada.m4
+CMLTxCargada-ppKtikz.pgf
+CMLTxCargada-Sub.tex
+CMModeloCircuitalLTx.m4
+CMModeloCircuitalLTx.tex
+dpic
+esk
+HechoyPendiente.tex
+KtikzTxCanalRxGenerico.tex
+LISTofFILES
+README
+sketch
+SKETCHParCabCylTikz.sk
+SKETCHParCabCylTikz-Sub.tex
+ST.tex
+superficie.sk
+TemplateSubfilesKtikz.pgs
+
+Última revisión 10 de diciembre de 2010. 
+
+En este directorio están los archivos necesarios para correr completamente la versión que se esté trabajando en ese momento. Los cambios en las versiones deberían quedar reseñados y almacenados en Github. Sin embargo, como soy un novato manejando esa herramienta utilizaré el método que he usado hasta el momento para tener respaldos: un comprimido a mi correo.
+
+Última revisión 10 de junio de 2011. 
+
+
+

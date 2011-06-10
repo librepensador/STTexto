@@ -1,0 +1,88 @@
+\documentclass[twoside,svgnames]{book}
+\usepackage[spanish]{babel}
+\usepackage[latin1]{inputenc}%para que entienda las tildes
+\usepackage{tikz}
+\usepackage[explicit]{titlesec}
+\newcommand*\chapterlabel{}
+\titleformat{\chapter}
+  {\gdef\chapterlabel{}
+   \normalfont\sffamily\Large\bfseries\upshape}
+  {\gdef\chapterlabel{\thechapter\ }}{0pt}
+  {\begin{tikzpicture}[remember picture,overlay]
+    \node[yshift=-3cm] at (current page.north west)
+      {\begin{tikzpicture}[remember picture, overlay]
+        \draw[fill=LightSkyBlue] (0,0) rectangle
+          (\paperwidth,3cm);
+        \node[anchor=east,xshift=.9\paperwidth,rectangle,
+              rounded corners=20pt,inner sep=11pt,
+              fill=MidnightBlue]
+              {\color{white}\chapterlabel#1};
+       \end{tikzpicture}
+      };
+   \end{tikzpicture}
+  }
+\titlespacing*{\chapter}{0pt}{50pt}{-60pt}
+
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt} % para que no indente cada vez que hay un fin de línea.
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+%% Standard graphics support. Always use this package
+\usepackage{graphicx}
+%\usepackage{geometry}
+
+\usepackage{bm}
+\usepackage{amsmath}%
+\usepackage[utopia]{mathdesign}
+\usepackage{array}
+\usepackage{subfiles}% latexing child file whitout running father file.
+\usepackage{appendix}
+\usepackage{comment}
+%\usepackage[colorinlistoftodos,disable]{todonotes}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{esk}% para procesar scripts de Sketch
+\usepackage{caption}
+%\usepackage{caption}[2007/11/04]
+\usepackage{upgreek}
+
+\addto{\captionsspanish}{% Porque se cargó el paquete babel.sty
+  \renewcommand*{\listfigurename}{Figuras}
+  \renewcommand*{\appendixname}{Apéndices}
+  \renewcommand*{\appendixtocname}{Apéndices}
+  \renewcommand*{\appendixpagename}{Apéndices}
+  }
+
+
+\title{Sistemas de Transmisión}
+\author{Luis David Emiliani y Carlos Eduardo Peñuela}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\subfile{ChapterSistemasComunicacion}
+\subfile{ChapterEcuacionesTelegrafista}
+\subfile{ChapterLTxSinPerdidas.tex}
+
+
+\subfile{HechoyPendiente}
+
+
+%%% APENDICES ----------------------------
+
+\appendix
+\appendixpage
+\addappheadtotoc
+
+\subfile{AppendixEqTelegrafistaTEM}
+
+%%%----------------------------------------
+
+
+
+
+\end{document}

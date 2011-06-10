@@ -1,0 +1,204 @@
+\documentclass[ST]{subfiles}
+\begin{document}
+ \chapter{Modelo circuital de parámetros distribuidos}
+\label{cap:ModeloCircuitalParametrosDistribuidos}
+
+Los canales alambrados fueron los primeros en emplearse para las comunicaciones eléctricas a mediado del siglo XIX, específicamente para servicios de telegrafía. En este caso, el canal consiste en varios cables que conectan el transmisor con el receptor. El transmisor crea un voltaje en función de la información que se va a transmitir y lo acopla al canal. Es necesario que exista un circuito (un camino eléctricamente cerrado) que guíe el flujo de corriente. En el caso de comunicaciones a través de un solo cable, el camino de retorno era la tierra. Como su conductividad es bastante variable, las comunicaciones que usan la tierra como retorno no pueden ser de larga distancia por la distorsión del pulso transmitido.
+
+Es por esto que la mayoría de los canales cableados consisten en parejas de conductores, sobre los cuales el transmisor envía la señal. La configuración de este par de conductores afecta la transmisión de la señal, dado que la forma y las propiedades de los materiales pueden alterar las características del circuito.
+
+Aunque existen varias configuraciones físicas para el par de conductores. todas pueden modelarse de forma global con un conjunto de ecuaciones básicas. Para efectos del análisis, se trabajará con una línea genérica que incorporará la mayoría de las características de una línea real.
+
+Esta línea genérica consiste en dos conductores, con una diferencia de potencial $V(x)$ y una corriente $I(x)$ que viaja por uno de los cables y retorna por el otro. En la teoría de circuitos de baja frecuencia, normalmente se considera que los efectos de la línea de trasmisión son nulos. Es decir, que la diferencia de potencial y corriente acoplada a la línea son las mismas que llegan a la carga. En alta frecuencia esta aproximación no es cierta ya que el voltaje y la corriente se modelan como una onda.\todo{se genera un espacio acá que quiero disminuir}
+\begin{figure}[htbp]
+  \centering
+	\subfile{CMCircGeneBajaFrec.tex}
+	\caption{Circuito acoplado a una línea de transmisión de longitud $L$ que alimenta una carga $Z_l$. Si la longitud del cable es despreciable con respecto a la longitud de onda de la onda guiada por el canal ($L<<\lambda$), entonces $V_0=V_l$. Si la longitud de la línea de transmisión es comparable con $\lambda$, $V_0$ es en general diferente de $V_l$.}
+	\label{fig:CircuitoBajaFrecuencia}
+\end{figure}
+
+\section{Ecuaciones del telegrafista}
+
+Supóngase una línea de transmisión de dos cables paralelos considerando que $L>>\lambda$, tal como se muestra en el gráfico (\ref{fig:CircuitoBajaFrecuencia}). Cuando la fuente coloca una diferencia de potencial en los terminales del par, comienza a propagarse una onda electromagnética guíada por los conductores. Como la onda tiene una velocidad finita, al final de la línea no se acoplan los mismos voltaje y corriente que se excitaron en la entrada.
+
+El análisis no se puede realizar desde la teoría de circuitos de baja frecuencia, ya que esta teoría considera que las ondas se propagan en los circuitos a velocidad infinita. Por ello se utilizan las ecuaciones del telegrafista, que representan la evolución ondulatoria del voltaje y la corriente en una línea de transmisión genérica; considerando que la resistencia, la inductancia y la capacitancia, son parámetros distribuidos. El modelo de la línea de transmisión, basado en las ecuaciones de Maxwell, representa una línea como una serie infinita de circuitos de dos puertos (ver gráfico (\ref{fig:ModCirLTx})), en donde cada circuito mostrado en la figura (\ref{fig:CelDif}) representa un tramo diferencial de la línea.
+
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+  \centering
+	\subfile{CMCeldaUnitaria.tex}
+	\caption{Celda diferencial de una línea de transmisión.}
+	\label{fig:CelDif}
+\end{figure}
+
+\vspace{0.5cm}
+
+\begin{figure}[htbp]
+  \centering
+	\subfile{CMModeloCircuitalLTx.tex}
+	\caption{Modelo circuital de una línea de transmisión.}
+	\label{fig:ModCirLTx}
+\end{figure}
+
+Cada celda es una \textbf{T} que consta de una resistencia $R=r\Delta x$, una inductuncia $L=l\Delta x$, una capacitancia $C=c\Delta x$ y una conductancia $G=g\Delta x$. Las variables en minúsculas representan el dispositivo asociado de dos terminales por unidad de longitud. Es decir, $r$ es la resistencia por unidad de longitud que presenta el cable y cuantifica las pérdidas por calor producidas al guiar la onda a través del canal. La inductancia por unidad de longitud $l$ es una medida de la inductancia externa que se asocia al par de cables cuando se cierra el circuito y se enlaza un flujo magnético. La conductancia por unidad de longitud $g$, cuantifica las pérdidas debido a la imperfección del dieléctrico que separa el par de cables, ya que tiene una conductividad baja pero no nula. Por último está $c$, la capacitancia por unidad de longitud, es la variable que da cuenta del almacenamiento de energía en forma de campo eléctrico entre los cables.
+
+En un punto arbitrario $x$ de la línea de transmisión aparecen entrando a la celda una corriente $i(x,t)$ y saliendo, $i(x+\Delta x,t)$. En la cresta de la \textbf{T} se define el potencial $v(x,t)$ asociado a la celda y medido con respecto a la base de la \textbf{T}. Si se utilizan las leyes de Kirchoff en el circuito, se obtienen las ecuaciones (\ref{eq:KirchoffCeldaUnitaria}).
+\begin{equation}\label{eq:KirchoffCeldaUnitaria}
+\begin{split}
+	i(x,t)-i(x+\Delta x,t) & = \left[c\frac{\partial v(x,t)}{\partial t}+gv(x,t)\right]\Delta x , \\
+	v(x,t)-v(x+\Delta x,t) & = \left[ r i(x+\Delta x,t)+l\frac{\partial i(x+\Delta x,t)}{\partial t}\right]\Delta x .
+\end{split}
+\end{equation}
+
+Al dividir por $\Delta x$ y tomar el límite cuando $\Delta x \rightarrow 0$, se consiguen las denominadas ecuaciones del telegrafista (\ref{eq:TelegrafistaAcopladas}).
+\begin{equation}\label{eq:TelegrafistaAcopladas}
+\begin{split}
+	-\frac{\partial i(x,t)}{\partial x} & = c\frac{\partial v(x,t)}{\partial t} + g v(x,t) , \\
+	-\frac{\partial v(x,t)}{\partial x} & = l\frac{\partial i(x,t)}{\partial t} + r i(x,t).
+\end{split}
+\end{equation}
+
+Derivando con respecto a la posición y respecto al tiempo, las ecuaciones en (\ref{eq:TelegrafistaAcopladas}), se pueden desacoplar y llevarlas a su forma ondulatoria, tal como aparecen en (\ref{eq:TelegrafistaDesacopladas}).
+\begin{equation}\label{eq:TelegrafistaDesacopladas}
+\begin{split}
+	\frac{\partial^2 v(x,t)}{\partial x^2} & = lc\frac{\partial^2 v(x,t)}{\partial t^2} + (rc +lg)\frac{\partial v(x,t)}{\partial t}+rg v(x,t) , \\
+	\frac{\partial^2 i(x,t)}{\partial x^2} & = lc\frac{\partial^2 i(x,t)}{\partial t^2} + (rc +lg)\frac{\partial i(x,t)}{\partial t}+rg i(x,t).
+\end{split}
+\end{equation}
+
+Como es común en circuitos eléctricos, se puede simplificar el análisis de las ecuaciones del telegrafista, suponiendo voltajes y corrientes fasoriales. Se definen:
+\begin{equation*}
+	v(z,t)=\mathbb{R}\left[V(x)e^{j\omega t}\right]
+	\qquad\text{e}\qquad
+	i(x,t)=\mathbb{R}\left[I(x)e^{j\omega t}\right],
+\end{equation*} donde $\mathbb{R}$ denota la parte real de un número complejo, $V(x)$ es el fasor de voltaje, $I(x)$ el fasor de corriente y $j^2=-1$. Las ecuaciones reescritas para el voltaje y la corriente complejas $V_c(x,t)=V(x)e^{j\omega t}$ e $I_c(x,t)=I(x)e^{j\omega t}$, quedan reducidas a (\ref{eq:TelegrafistaFasorial}) luego de eliminar la dependencia del tiempo.
+\begin{equation}\label{eq:TelegrafistaFasorial}
+\begin{split}
+	\frac{d^2 V(x)}{d x^2} & = (r+j\omega l)(g+j\omega c)V(x) , \\
+	\frac{d^2 I(x)}{d x^2} & = (r+j\omega l)(g+j\omega c)I(x).
+\end{split}
+\end{equation}
+
+Considerando que $\gamma^2 = (r+j\omega l)(g+j\omega c)$, la ecuación para el potencial en (\ref{eq:TelegrafistaFasorial}) tiene por solución:
+\begin{equation}\label{eq:VoltageLTx}
+V(x)=V_+(0)e^{-\gamma x}+V_-(0)e^{\gamma x},
+\end{equation} donde los subíndices $+$ y $-$ se refieren a la componente propagada en $x$ y en $-x$, respectivamente.\footnote{A la solución fasorial $V_+(0)e^{-\gamma x}$ le corresponde un voltaje complejo $V_+(0)e^{-\gamma x}e^{j\omega t}$, que se puede simplificar como $V_+(0)e^{-\displaystyle\mathbb{R}(\gamma) x}e^{-\displaystyle j\left(\mathbb{I}(\gamma) x -\omega t\right)}$, con una parte ondulatoria que tiene una velocidad de propagación positiva en $x$.}
+La variable $\gamma$ recibe el nombre de constante de propagación y en general es un número complejo $\gamma=\alpha+j\beta$. Los significados particulares de $\alpha$ y $\beta$ se verán con detalle en (). \todo{poner una referencia a la explicación más detallada de la parte real e imaginaria de la constante de propagación}
+
+Si se considera la versión fasorial de la segunda ecuación en (\ref{eq:TelegrafistaAcopladas}), se puede escribir la corriente $I(x)$ en función del fasor de potencial $V(x)$:
+\begin{equation*}\label{eq:CorrienteLTx}
+		I(x)=-\frac{1}{r+j\omega l}\frac{dV(x)}{dz}=\frac{1}{Z_c}(V_+(0)e^{-\gamma x}-V_-(0)e^{\gamma x}),
+\end{equation*} donde se define la impedancia característica como el cociente del potencial incidente y la corriente incidente\footnote{Un cálculo equivalente se obtiene si se realiza la división entre el potencial reflejado y la corriente reflejada.}:\begin{equation}\label{eq:DefImpedanciaCaracteristica}
+		Z_c=\sqrt{\frac{r+j\omega l}{g+j\omega c}}.
+\end{equation} En general $Z_c$ es un cantidad compleja y representa la impedancia que vería la fuente del cable si solo se propagase la onda incidente\footnote{\label{pie:ImpRefGenLinInf}$Z(x)\big|_{x=0}=\displaystyle\frac{V_+(x)}{I_+(x)}=\frac{V_+(0)e^{-\gamma x}}{I_+(0)e^{-\gamma x}}=\sqrt{\frac{r+j\omega l}{g+j\omega c}}$.}. La solución obtenida para el fasor de voltaje tiene su correspondiente voltaje en el tiempo realizando la siguiente operación
+\begin{equation*}
+v(x,t)=\mathbb{R} \left[V(x)e^{j\omega t}\right]= \left|V_+(0)\right|e^{-\alpha x}\cos(\beta x-\omega t+\varphi_+)+\left|V_-(0)\right|e^{\alpha x}\cos(\beta x+\omega t+\varphi_-) ,
+\end{equation*} donde $\varphi_+$ y $\varphi_-$ son las fases de los números complejos $V_+(0)$ y $V_-$ respectivamente. Obsérvese que las ondas incidente y reflejada, \textsl{decrecen} exponencialmente a medida que se propagan. La segunda componente viaja en $-x$ y por ello la exponencial $e^{\alpha x}$ va atenuando la amplitud de la señal.
+
+La velocidad de propagación de la onda coincide en este caso, con la velocidad de fase, que es la velocidad a la cual se propaga un punto de la onda con fase constante. La onda incidente tiene una velocidad de propagación:
+\[v_{ph}=\frac{\omega}{\beta}\text{ \ \ \ ya que \ \ \ }\frac{d \phi_+}{d t}=0\text{ \ \ \ en \ \ \ }\phi_+=\beta x-\omega t+\varphi_+.\]
+Por supuesto el cálculo para la fase $\phi_-$ arroja una velocidad negativa $\displaystyle{v_{ph}=-\frac{\omega}{\beta}}$.
+
+\section{Línea de transmisión cargada}\label{sec:LTxCargada}
+
+Considérese una línea de transmisión que guía la potencia a una carga, proveniente de una fuente, tal como se muestra en la figura [\ref{fig:LTxOrigenCarga}].
+\begin{figure}[htbp]
+  \centering
+	\subfile{CMLTxCargada-Sub.tex}
+	\caption{Línea de transmisión cargada con una impedancia $Z_l$. Se considera que el origen $x=0$ está en la carga y el generador está en $x=-L$.}
+	\label{fig:LTxOrigenCarga}
+\end{figure}
+
+Evaluando las ecuaciones (\ref{eq:VoltageLTx}) y (\ref{eq:CorrienteLTx}) en la carga:
+\begin{equation}\label{eq:V&ICarga}
+ V(0)=V_+(0)+V_-(0)\text{ \ \ y \ \ }I(0)=\frac{1}{Z_c}(V_+(0)-V_-(0)),
+\end{equation}
+y dividiendo el potencial en la carga $V(0)$ por la corriente en la carga $I(0)$, se obtiene:
+\begin{equation}\label{eq:ImpCargafuncionImpCar}
+Z_l=\displaystyle\frac{V(0)}{I(0)}=Z_c\displaystyle\frac{V_+(0)+V_-(0)}{V_+(0)-V_-(0)}.
+\end{equation}
+
+Se define el coeficiente de reflexión \todo{Definir el coeficiente de transmisión y escribir la relación que hay entre $\Gamma$ y $T$} como el cociente entre el voltaje reflejado y el voltaje incidente, tal como se observa en (\ref{eq:DefGamma}).
+\begin{equation}\label{eq:DefGamma}
+ \Gamma (x)\equiv\frac{V_-(x)}{V_+(x)}=\frac{V_-(0)e^{\gamma x}}{V_+(0)e^{-\gamma x}}.
+\end{equation}
+Al dividir por el voltaje reflejado en el numerador y denominador de (\ref{eq:ImpCargafuncionImpCar}) y despejar para $\Gamma$ se obtiene (\ref{eq:Gamma(X)}).
+\begin{equation}\label{eq:Gamma(X)}
+  \Gamma(0)=\frac{V_-(0)}{V_+(0)}=\frac{Z_l-Z_c}{Z_l+Z_c}\text{ \ \ y \ \ }\Gamma (x)=\frac{Z_l-Z_c}{Z_l+Z_c}e^{2\gamma x}.
+\end{equation}
+Para independizar los valores de los fasores $V(x)$ e $I(x)$, de sus valores en la carga; se utiliza un nuevo sistema de coordenadas con el origen en la carga y creciente en la dirección hacia el generador. Es decir $q=-x$. El voltaje y la corriente se transforman en
+\begin{equation}\label{eq:V&IFun-q}
+  \begin{split}
+   V(q)=V_+(q)+V_-(q)=&V_+(0)e^{\gamma q}+V_-(0)e^{-\gamma q},\\
+   I(q)=I_+(q)+I_-(q)=&\frac{1}{Z_c}(V_+(0)e^{\gamma q}-V_-(0)e^{-\gamma q}).
+  \end{split}
+\end{equation}
+Si se conocen el voltaje y la corriente en la carga, se puede calcular el voltaje incidente y el voltaje reflejado a partir de la ecuación (\ref{eq:V&ICarga}).
+\begin{equation}
+ V_+(0)=\frac{1}{2}\left[V(0)+Z_c I(0)\right]\text{ \ \ y \ \ }V_-(0)=\frac{1}{2}\left[V(0)-Z_c I(0)\right].
+\end{equation}
+Reemplazando estos valores en (\ref{eq:V&IFun-q}), el voltaje y la corriente en cualquier punto de la línea se expresan así:
+\begin{equation}\label{eq:V(q)&I(q)}
+ V(q)=\frac{Z_l+Z_c}{2}I_le^{\gamma q}+\frac{Z_l-Z_c}{2}I_le^{-\gamma q}\text{ \ \ e \ \ } I(q)=\frac{Z_l+Z_c}{2Z_c}I_le^{\gamma q}-\frac{Z_l-Z_c}{2Z_c}I_le^{-\gamma q}.
+\end{equation}
+Se puede calcular de (\ref{eq:V(q)&I(q)}) la impedancia que se ``ve'' desde cualquier punto de la línea, haciendo el cociente de funciones hiperbólicas entre el potencial y la corriente
+\begin{equation}\label{eq:V(q)&I(q)Hip}
+ \begin{split}
+  V(q)=V_l\cosh \gamma q+Z_cI_l\senh\gamma q\text{ \ \ , \ \ }&I(q)=\frac{V_l}{Z_c}\senh\gamma q+I_l\cosh\gamma q,\\
+ Z(q)=Z_c&\frac{Z_l+Z_c\tanh\gamma q}{Z_l\tanh\gamma q+Z_c}.
+ \end{split}
+\end{equation}
+
+De nuevo; cuando la línea es infinita, la impedancia reflejada en el generador es la impedancia característica. Verbigracia, si $q\rightarrow\infty$ entonces $Z(q)\rightarrow Z_c$. Un resultado que ya se había obtenido en el pie de página (\ref{pie:ImpRefGenLinInf}).
+
+% \begin{align}\label{eq:V(q)&I(q)Hip}
+%  V(q)=V_l\cosh \gamma q+Z_cI_l\senh\gamma q\text{ \ \ , \ \ }&I(q)=\frac{V_l}{Z_c}\senh\gamma q+I_l\cosh\gamma q,\\
+%  Z(q)=Z_c&\frac{Z_l+Z_c\tanh\gamma q}{Z_l\tanh\gamma q+Z_c}.
+% \end{align}
+
+\section{Potencia guiada en una línea}\label{sec:PotenciaGuiadaLinea}
+
+
+La potencia eléctrica suministrada por una fuente se define como el producto de la diferencia de potencial entre sus terminales y la corriente saliente, según la convención de los dispositivos activos\todo{Poner una referencia de la convención utilizada en circuitos eléctricos para dispositivos pasivos y activos.}. Usualmente se utiliza el promedio en el tiempo de esta potencia cuando se hace un análisis fasorial. Para su representación se procede escribiendo el potencial $v(t)$ y la corriente $i(t)$ en función de sus correspondientes valores complejos, tal como se muestra en (\ref{eq:PotenciaFuncVI-int}).
+\begin{equation}\label{eq:PotenciaFuncVI-int}
+  \begin{split}
+   P_i(t)\equiv&v(t)i(t)=\left(\frac{1}{2}\left[V\displaystyle e^{j\omega t}+V^*\displaystyle e^{-j\omega t}\right]\right)\left(\frac{1}{2}\left[I\displaystyle e^{j\omega t}+I^*\displaystyle e^{-j\omega t}\right]\right),\\
+   =&\frac{1}{4}\left(VI\displaystyle e^{2j\omega t}+V^*I^*\displaystyle e^{-2j\omega t}+VI^*+V^*I\right)=\frac{1}{2}\left[\mathbb{R}(VI\displaystyle e^{2j\omega t})+\mathbb{R}(VI^*)\right].
+  \end{split}
+\end{equation}
+Al realizar el promedio en un periodo se obtiene la expresión típica de los circuitos eléctricos
+\begin{equation}\label{eq:PotenciaFuncVI-fin}
+ P\equiv\langle P_i(t)\rangle=\displaystyle\frac{1}{\tau}\int\limits_0^{\tau}P_i(t)dt=\frac{1}{2}\left[\mathbb{R}(VI\displaystyle \langle e^{2j\omega t} \rangle)+\mathbb{R}(VI^*)\right]=\frac{1}{2}\mathbb{R}(VI^*).
+\end{equation}
+Se define la potencia compleja como el semiproducto del fasor de potencial $V$ y el fasor conjugado de corriente $I^*$, \[P_c\equiv\frac{1}{2}VI^*.\]La interpretación de esta variable es la habitual: $P\equiv\mathbb{R}\left[P_c\right]$ es el promedio en el tiempo de la potencia activa suministrada a la carga (potencia que se disipa en forma de calor) y $\mathbb{I}\left[P_c\right]$ es el promedio en el tiempo de la potencia reactiva entregada (potencia que se devuelve a la fuente).
+
+Para el caso de las líneas de transmisión, la potencia compleja depende de la posición en la línea, debido a que tanto el voltaje como la corriente varían con $q$. Es decir:
+\begin{equation}
+ P_c(q)\equiv\frac{1}{2}\left[V(q)I^*(q)\right].
+\end{equation}
+$P_c$ se puede escribir como función del voltaje incidente, con ayuda del coeficiente de reflexión
+\begin{equation}\label{eq:PoteCompV+&Gam}
+ \begin{split}
+  P_c(q) & = \frac{1}{2}Y_c^*(q)\left[V_+(q)+V_-(q)\right]\left[V_+^*(q)-V_-^*(q)\right], \\
+  & = \frac{Y_c^*}{2}\Big(V_+(q)\left[1+\frac{V_-(q)}{V_+(q)}\right]\Big) \Big(V_+^*(q) \left[1-\frac{V_-^*(q)} {V_+^*(q)}\right]\Big), \\
+  &=\frac{Y_c^*\left|V_+(q)\right|^2}{2} \left[1+\Gamma(q)\right] \left[1-\Gamma^*(q)\right].
+ \end{split}
+\end{equation}
+En (\ref{eq:PoteCompV+&Gam}) se observa fácilmente que aunque el voltaje incidente sea no nulo, la potencia compleja puede ser nula. Solo debe cumplirse que $\Gamma(q)=-1$ o $\Gamma^*(q)=1$. Es decir: $\left|\Gamma(q)\right|=1$; lo que implica o que el voltaje incidente es igual al voltaje reflejado \emph{en todo punto} o es su inverso $V_+(q)=-V_-(q)$. Estas dos circunstancias se pueden presentar y significan dos situaciones diferentes para la línea. Si los voltajes incidente y reflejado se igualan, el voltaje total se duplica en todo punto. Esta situación puede ser perjudicial para el aislante del cable o para los circuitos que están acoplados a la línea. De otro lado; cuando el voltaje incidente y el voltaje reflejado se contrarestan, no hay potencia guiada en la línea ni mucho menos potencia entregada a la carga. Estos comportamientos se estudiarán con mayor detalle en (\todo{referencia a cuando la carga sea un corto o un circuito abierto}).
+
+Para terminar con esta presentación general falta considerar la relación de las potencias incidente y reflejada, teniendo en cuenta que el coeficiente de reflexión de voltaje es el negativo del coeficiente de reflexión de corriente\footnote{Siguiendo la ecuación (\ref{eq:V(q)&I(q)}), se observa que $I_+(q)=\displaystyle\frac{V_+(q)}{Z_c}$ e $I_-(q)=-\displaystyle\frac{V_-(q)}{Z_c}$. Luego $\Gamma(q)=-\displaystyle\frac{I_-(q)}{I_+(q)}$.}
+\begin{equation*}
+  \begin{split}
+   P_-(q)=&\frac{1}{2}\mathbb{R}\left[-V_-(q)I_-^*(q)\right]\text{ \ \ y \ \ } P_+(q)=\frac{1}{2}\mathbb{R}\left[V_+(q)I_+^*(q)\right], \\
+   \frac{P_-(q)}{P_+(q)}=&\mathbb{R}\left[ \frac{V_-(q)}{V_+(q)} \left( -\frac{I_-(q)}{I_+(q)}\right)^*\right] = \mathbb{R}\left|\Gamma(q)\right|^2,
+  \end{split}
+\end{equation*}
+Es decir
+\begin{equation}\label{eq:CoefReflPote}
+ \frac{P_-(q)}{P_+(q)}=\left|\Gamma(q)\right|^2.
+\end{equation}
+Nótese que cuando el valor absoluto del coeficiente de reflexión de tensión es uno, la potencia incidente es igual a la potencia reflejada y la potencia total \emph{es nula}.
+
+\end{document}
+
